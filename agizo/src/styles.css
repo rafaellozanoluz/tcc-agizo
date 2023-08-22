@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.left-login{
+    margin-top: 100px;
+}
+.right-login{
+    margin-top: 66px;
+}
+.title {
+    margin-top: 75px;
+    color: coral;
+    
+}
+.image-login{
+    width: 500px;
+}
+.navbar-brand{
+    margin-left: 30px;
+}
