@@ -1,0 +1,19 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "name": "Pedro",
+      "login": "pedro@email.com",
+      "password": "123",
+      "profile": "candidato",
+      "cpf": "123123",
+      "tel": "123123",
+      "number": "",
+      "street": "Rua Gastão Luiz Cruls",
+      "neighborhood": "Bairro Alto",
+      "city": "Curitiba",
+      "state": "PR",
+      "cep": "82840180"
+    }
+  ]
+}
