@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login';
 import { NavbarModule } from './navbar';
 import { FooterModule } from './footer';
+import { AutoCadastroModule } from './auto-cadastro';
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,7 +14,8 @@ import { FooterModule } from './footer';
     BrowserModule,
     LoginModule,
     NavbarModule,
-    FooterModule
+    FooterModule,
+    AutoCadastroModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
