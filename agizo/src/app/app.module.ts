@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login';
 import { NavbarModule } from './navbar';
+import { FooterModule } from './footer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -11,7 +12,8 @@ import { NavbarModule } from './navbar';
   imports: [
     BrowserModule,
     LoginModule,
-    NavbarModule
+    NavbarModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
