@@ -1,0 +1,49 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "name": "Pedro",
+      "login": "pedro@email.com",
+      "password": "123",
+      "profile": "candidato",
+      "cpf": "123123",
+      "tel": "123123",
+      "number": "",
+      "street": "Rua Gastão Luiz Cruls",
+      "neighborhood": "Bairro Alto",
+      "city": "Curitiba",
+      "state": "PR",
+      "cep": "82840180"
+    },
+    {
+      "id": 2,
+      "name": "Rafael",
+      "login": "rafael@email.com",
+      "password": "123",
+      "profile": "candidato",
+      "cpf": "10583951902",
+      "tel": "419952093",
+      "number": "",
+      "street": "Rua Antônio Zaramella",
+      "neighborhood": "Colônia Rio Grande",
+      "city": "São José dos Pinhais",
+      "state": "PR",
+      "cep": "83025590"
+    },
+    {
+      "id": 3,
+      "name": "Pietro",
+      "login": "Pietro@email.com",
+      "password": "123",
+      "profile": "candidato",
+      "cpf": "1058221",
+      "tel": "4199442",
+      "number": "",
+      "street": "Rua Antônio Zaramella",
+      "neighborhood": "Colônia Rio Grande",
+      "city": "São José dos Pinhais",
+      "state": "PR",
+      "cep": "83025590"
+    }
+  ]
+}
