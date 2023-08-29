@@ -1,0 +1,4 @@
+{
+  "/pedidos/cliente/:id": "/pedidos?usuarioId=:id",
+  "/usuarios/cliente/": "/usuarios?profile=cliente"
+}

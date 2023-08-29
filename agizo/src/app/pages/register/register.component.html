@@ -1,0 +1,179 @@
+<div class="header bg-gradient py-7 py-lg-7"></div>
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-muted mb-4">
+            <p>Realizar autocadastro no sistema</p>
+          </div>
+
+          <form role="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="Nome"
+                  type="text"
+                  formControlName="username"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="Email"
+                  type="email"
+                  formControlName="email"
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    <input
+                      class="form-control"
+                      placeholder="CPF"
+                      type="text"
+                      formControlName="cpf"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                    </div>
+                    <input
+                      class="form-control"
+                      placeholder="Telefone"
+                      type="tel"
+                      formControlName="tel"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div formGroupName="address">
+              <div class="row">
+                <div class="col-8">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="CEP"
+                        type="text"
+                        formControlName="cep"
+                        (blur)="onBlur($event)"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="UF"
+                        type="text"
+                        formControlName="state"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="Cidade"
+                        type="text"
+                        formControlName="city"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="Bairro"
+                        type="text"
+                        formControlName="neighborhood"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group input-group-alternative mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
+                  </div>
+                  <input
+                    class="form-control"
+                    placeholder="Rua"
+                    type="text"
+                    formControlName="street"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row my-4">
+              <div class="col-12">
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id="customCheckRegister" type="checkbox" />
+                  <label class="custom-control-label" for="customCheckRegister">
+                    <span class="text-muted"
+                      >Li e concordo com os <a href="#!">Termos de Privacidade</a></span
+                    >
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary mt-4">Criar conta</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
