@@ -7,10 +7,22 @@
       <div class="card bg-secondary shadow border-0">
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <p>Realizar autocadastro no sistema</p>
+            <p>Realize seu cadastro!</p>
           </div>
 
+
+
           <form role="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+              
+              <select class="form-control" >
+                <option disabled selected hidden>Selecione o tipo de usuário</option>
+                <option value="recrutador">Recrutador</option>
+                <option value="candidato">Candidato</option>
+              </select>
+
+            </div>
             <div class="form-group">
               <div class="input-group input-group-alternative mb-3">
                 <div class="input-group-prepend">
@@ -35,6 +47,20 @@
                   placeholder="Email"
                   type="email"
                   formControlName="email"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-key"></i></span>
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="Senha"
+                  type="password"
+                  formControlName="password"
                 />
               </div>
             </div>

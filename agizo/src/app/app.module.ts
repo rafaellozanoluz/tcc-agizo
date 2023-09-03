@@ -16,6 +16,8 @@ import { SharedModule } from './shared';
 import { InicialRecrutadorComponent } from './pages/inicial-recrutador/inicial-recrutador.component';
 import { InicialAdministradorComponent } from './pages/inicial-administrador/inicial-administrador.component';
 import { InicialCandidatoComponent } from './pages/inicial-candidato/inicial-candidato.component';
+import { HomeComponent } from './pages/home/home.component';
+import { GerarCurriculoComponent } from './pages/gerar-curriculo/gerar-curriculo.component';
 
 @NgModule({
   imports: [
@@ -36,6 +38,8 @@ import { InicialCandidatoComponent } from './pages/inicial-candidato/inicial-can
     InicialRecrutadorComponent,
     InicialAdministradorComponent,
     InicialCandidatoComponent,
+    HomeComponent,
+    GerarCurriculoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
