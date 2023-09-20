@@ -1,1 +1,43 @@
-<p>curriculo-habilidades works!</p>
+<div class="container">
+
+    <h3 class="title-etapa">Informações sobre suas habilidades</h3>  
+     
+    <form role="form">
+        <div class="form-group">
+            
+            <div class="title-question">
+                <i class="fa fa-briefcase"></i>
+                <label class="question">Habilidade</label>
+            </div>           
+            <div class="resposta">
+                <input class="form-control" type="text" placeholder="Habilidade">
+            </div>
+
+            <div class="title-question">
+                <i class="fa fa-align-justify"></i>
+                <label class="question">Descrição da habilidade</label>
+            </div>           
+            <div class="resposta">
+                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição da habilidade" required></textarea>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="title-question">
+                        <i class="fa fa-arrow-up"></i>
+                        <label class="question">Nível</label>
+                    </div>           
+                    <div class="resposta">
+                        <select class="form-control">
+                            <option value="1">Básico</option>
+                            <option value="2">Intermediário</option>
+                            <option value="3">Avançado</option>
+                          </select>  
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-success">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

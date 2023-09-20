@@ -1,1 +1,53 @@
-<p>curriculo-adicionais works!</p>
+<div class="container">
+
+    <h3 class="title-etapa">Informações adicionais</h3>  
+     
+    <form role="form">
+        <div class="form-group">
+            
+            <div class="title-question">
+                <i class="fa fa-briefcase"></i>
+                <label class="question">Informações adicionais</label>
+            </div>           
+            <div class="resposta">
+                <select class="form-control">
+                    <option value="1">Título monográfico</option>
+                    <option value="2">Prêmios e conquistas</option>
+                    <option value="3">Projetos</option>
+                    <option value="4">Voluntariados</option>
+                    <option value="5">Idiomas</option>
+                    <option value="3">Referências</option>
+                </select>  
+            </div>
+
+            <div class="title-question">
+                <i class="fa fa-align-justify"></i>
+                <label class="question">Descrição</label>
+            </div>           
+            <div class="resposta">
+                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição" required></textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div class="title-question">
+                        <i class="fa fa-calendar"></i>
+                        <label class="question">Data de aquisição</label>
+                    </div>           
+                    <div class="resposta">
+                        <input
+                            class="form-control"
+                            placeholder="Data aquisição"
+                            type="date"
+                            formControlName="dateOut"
+                        />
+                    </div>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-success">Adicionar</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
