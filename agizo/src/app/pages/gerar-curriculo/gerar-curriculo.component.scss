@@ -6,14 +6,14 @@
 
 .slider {
     margin: 0 auto;
-    width: 800px;
-    height: 400px;
+    width: 1000px;
+    height: 550px;
     overflow: hidden;
 }
 
 .slides {
     width: 400%;
-    height: 400px;
+    height: 550px;
     display: flex;
 }
 
@@ -27,13 +27,17 @@
 }
 
 .component {
-    width: 800px;
+    width: 1000px;
+    margin-top: 60px;
+}
+
+.component button {
+    margin-left: 850px;
 }
 
 .manual-navigation {
     position: absolute;
-    width: 800px;
-    margin-top: -40px;
+    width: 1000px;
     display: flex;
     justify-content: center;
 }
@@ -44,6 +48,7 @@
     border-radius: 10px;
     cursor: pointer;
     transition: 1s;
+    margin-top: 10px;
 
 }
 
@@ -89,8 +94,8 @@
 
 .navigation-auto{
     position: absolute;
-    width: 800px;
-    margin-top: 360px;
+    width: 1000px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 
@@ -123,3 +128,4 @@
 #radio6:checked ~ .navigation-auto .auto-btn6 {
     background-color: #008FC8;
 }
+
