@@ -18,6 +18,7 @@ import { InicialAdministradorComponent } from './pages/inicial-administrador/ini
 import { InicialCandidatoComponent } from './pages/inicial-candidato/inicial-candidato.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GerarCurriculoComponent } from './pages/gerar-curriculo/gerar-curriculo.component';
+import { VisualizarCurriculoComponent } from './pages/visualizar-curriculo/visualizar-curriculo.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { GerarCurriculoComponent } from './pages/gerar-curriculo/gerar-curriculo
     InicialCandidatoComponent,
     HomeComponent,
     GerarCurriculoComponent,
+    VisualizarCurriculoComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
