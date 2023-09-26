@@ -2,11 +2,78 @@
 
     <h1 class="title-page">Cadastre as informações do seu currículo!</h1>
 
-    <app-curriculo-atuacao></app-curriculo-atuacao>
-    <app-curriculo-resumo></app-curriculo-resumo>
-    <app-curriculo-experiencia></app-curriculo-experiencia>
-    <app-curriculo-formacao></app-curriculo-formacao>
-    <app-curriculo-habilidades></app-curriculo-habilidades>
-    <app-curriculo-adicionais></app-curriculo-adicionais>
+    <div class="slider">
+        <div class="slides">
 
+            <!--Radio Buttons-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+            <input type="radio" name="radio-btn" id="radio5">
+            <input type="radio" name="radio-btn" id="radio6">
+
+            <!--Slide component-->
+            <div class="slide first" id="slide">
+                <div class="component">
+                <app-curriculo-atuacao></app-curriculo-atuacao>
+                <button type="button" class="btn btn-primary" (click)="slide2()">Próximo</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="component">
+                <app-curriculo-resumo></app-curriculo-resumo>
+                <button type="button" class="btn btn-primary" (click)="slide3()">Próximo</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="component">
+                    <app-curriculo-experiencia></app-curriculo-experiencia>
+                    <button type="button" class="btn btn-primary" (click)="slide4()">Próximo</button>
+                </div>
+                </div>
+            <div class="slide">
+                <div class="component">
+                    <app-curriculo-formacao></app-curriculo-formacao>
+                    <button type="button" class="btn btn-primary" (click)="slide5()">Próximo</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="component">
+                    <app-curriculo-habilidades></app-curriculo-habilidades>
+                    <button type="button" class="btn btn-primary" (click)="slide6()">Próximo</button>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="component">
+                    <app-curriculo-adicionais></app-curriculo-adicionais>
+                    <button type="button" class="btn btn-primary">Salvar informações</button>
+                </div>
+            </div>
+
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+                <div class="auto-btn5"></div>
+                <div class="auto-btn6"></div>
+            </div>
+
+            <div class="manual-navigation">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+                <label for="radio5" class="manual-btn"></label>
+                <label for="radio6" class="manual-btn"></label>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="button">
+        
+    </div>
 </div>
