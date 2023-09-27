@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { InicialCandidatoComponent } from '../../pages/inicial-candidato/inicial-candidato.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 

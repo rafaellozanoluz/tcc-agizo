@@ -41,7 +41,7 @@ import { VisualizarCurriculoComponent } from './pages/visualizar-curriculo/visua
     InicialCandidatoComponent,
     HomeComponent,
     GerarCurriculoComponent,
-    VisualizarCurriculoComponent
+    VisualizarCurriculoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
