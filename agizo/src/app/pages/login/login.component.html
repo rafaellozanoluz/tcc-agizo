@@ -13,7 +13,7 @@
   <div class="row justify-content-around">
     <div class="col-4">
       <div class="left-login">
-        <form #formLogin="ngForm">
+        <form role="form" [formGroup]="loginForm" (submit)="onSubmit()">
           <div class="form-group">
             <label for="exampleInputEmail1">Endereço de email</label>
             <div class="form-group mb-3">
@@ -22,18 +22,20 @@
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
                 <input
-                  class="form-control"
-                  placeholder="E-mail"
-                  type="email"
-                  id="login"
-                  name="login"
-                  [(ngModel)]="login.login"
-                  #login="ngModel"
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+                type="email"
+                required
                 />
               </div>
             </div>
-            <div *ngIf="login.errors && (login.dirty || login.touched)" class="alert alert-danger">
-              <div [hidden]="!login.errors?.['required']">Digite o email</div>
+            <div *ngIf="
+            loginForm.controls['email'].invalid &&
+            (loginForm.controls['email'].dirty ||
+              loginForm.controls['email'].touched)
+          ">
+              <div *ngIf="loginForm.controls['email'].errors.required">Digite o email</div>
             </div>
             <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
           </div>
@@ -44,20 +46,21 @@
                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                   </div>
                   <input
-                    class="form-control"
-                    placeholder="Senha"
-                    type="password"
-                    id="password"
-                    name="password"
-                    [(ngModel)]="login.password"
-                    #password="ngModel"
+                  class="form-control"
+                  placeholder="Senha"
+                  type="password"
+                  formControlName="password"
+                  required
                   />
               </div>
               <div
-                *ngIf="password.errors && (password.dirty || password.touched)"
-                class="alert alert-danger"
+              *ngIf="
+              loginForm.controls['password'].invalid &&
+              (loginForm.controls['password'].dirty ||
+                loginForm.controls['password'].touched)
+            "
               >
-                <div [hidden]="!password.errors?.['required']">Digite a senha.</div>
+                <div *ngIf="loginForm.controls['password'].errors.required">Digite a senha.</div>
               </div>
           </div>
           <div class="row my-4">
@@ -84,10 +87,7 @@
 
           <div class="text-center">
             <button
-              type="button"
-              class="btn btn-primary my-4"
-              (click)="logar()"
-              [disabled]="!formLogin.form.valid"
+            type="submit" class="btn btn-primary my-4"
             >
               Fazer login
             </button>

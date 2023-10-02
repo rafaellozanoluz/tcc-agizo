@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/layouts/auth-layout/services/login.service';
-import { User } from 'src/app/shared';
+import { AuthService } from 'src/app/services';
+import { MODEL } from 'src/app/shared';
 
 declare interface RouteInfo {
   path: string;
@@ -32,6 +32,20 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     permission: ['administrador'],
   },
+  {
+    path: '/gerar-curriculo',
+    title: 'Cadastrar Curriculo',
+    icon: 'fa fa-shopping-cart text-green',
+    class: '',
+    permission: ['candidato'],
+  },
+  {
+    path: '/visualizar-curriculo',
+    title: 'Ver Currículo',
+    icon: 'fa fa-shopping-cart text-green',
+    class: '',
+    permission: ['candidato'],
+  },
 ];
 
 @Component({
@@ -43,20 +57,21 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter((menuItem) => {
-      if (menuItem?.permission?.includes(this.usuarioLogado.profile)) {
+      if (menuItem?.permission?.includes(this.userLogged.type)) {
         return menuItem;
       }
     });
+
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
     });
   }
 
-  get usuarioLogado(): User | null {
-    return this.loginService.userLogged;
+  get userLogged(): MODEL.User | null {
+    return this.authService.userLogged;
   }
 }

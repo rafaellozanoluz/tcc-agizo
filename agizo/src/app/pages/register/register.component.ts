@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import axios from 'axios';
-import { UsuarioService } from 'src/app/auth/services/usuario.service';
-import { LoginService } from 'src/app/layouts/auth-layout/services/login.service';
-import { User } from 'src/app/shared';
+import { CepService, ClientService } from 'src/app/services';
+import { MODEL } from 'src/app/shared';
+import { Address, Client } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-register',
@@ -12,47 +11,49 @@ import { User } from 'src/app/shared';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  profileForm = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl(''),
-    cpf: new FormControl(''),
-    tel: new FormControl(''),
-    address: new FormGroup({
-      number: new FormControl(''),
-      street: new FormControl(''),
-      neighborhood: new FormControl(''),
-      city: new FormControl(''),
-      state: new FormControl(''),
-      cep: new FormControl(''),
-    }),
-  });
+  public clientForm: FormGroup;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  constructor(
+    private cepService: CepService,
+    private clientService: ClientService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.clientForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      cpf: ['', Validators.required],
+      cellphone: ['', Validators.required],
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      complemento: ['', Validators.required],
+      bairro: ['', Validators.required],
+      localidade: ['', Validators.required],
+      uf: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {}
 
-  private autocompleteAddress(data: any) {
-    const { logradouro, bairro, localidade, uf } = data;
-    this.profileForm.patchValue({
-      address: {
-        street: logradouro,
-        neighborhood: bairro,
-        city: localidade,
-        state: uf,
-      },
+  private autocompleteAddress(cep: MODEL.Cep) {
+    const { localidade, complemento, logradouro, bairro, uf } = cep;
+    this.clientForm.patchValue({
+      uf,
+      localidade,
+      complemento,
+      logradouro,
+      bairro,
     });
   }
 
   private searchCep(cep: string) {
-    axios
-      .get(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((response) => this.autocompleteAddress(response.data))
-      .catch((error) => console.log(error));
+    this.cepService.getCep(cep).subscribe((cep) => {
+      this.autocompleteAddress(cep);
+    });
   }
 
   private validateCep(cep: string) {
-    cep.replace(/\D/g, '');
-    if (cep === '') return null;
+    if (cep.replace(/\D/g, '') === '') return null;
 
     let validCepRegex = /^[0-9]{8}$/;
     if (!validCepRegex.test(cep)) return null;
@@ -71,32 +72,40 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public onSubmit() {
-    const {
-      username,
-      email,
-      cpf,
-      tel,
-      address: { number, street, neighborhood, city, state, cep },
-    } = this.profileForm.value;
-    let user = new User(
-      null,
-      username,
-      email,
-      '123',
-      'candidato',
-      cpf,
-      tel,
-      number,
-      street,
-      neighborhood,
-      city,
-      state,
-      cep
+  private dataFormBuilder(value): MODEL.Client {
+    const { name, cellphone, email, cep, cpf, uf, localidade, bairro, logradouro, complemento } =
+      value;
+    const address = new Address(cep, logradouro, complemento, bairro, localidade, uf);
+    const client = new Client(null, name, cpf, email, null, cellphone, 'candidato', address);
+
+    return client;
+  }
+
+  private createClient(client: MODEL.Client) {
+    this.clientService.create(client).subscribe(
+      (client) => {
+        alert(`${client.name}, conta criada com sucesso! Pendente de aprovação do gerente`);
+        this.clientForm.reset();
+        this.handleNavigate('/login');
+      },
+      (error) => {
+        alert(`${client.name}, algo deu errado na criação da conta. Email enviado`);
+      }
     );
-    this.usuarioService.inserir(user).subscribe((usuario) => {
-      alert(`Usuário ${usuario.name} criado com sucesso!`);
-      this.router.navigate(['/login']);
-    });
+  }
+
+  public onSubmit() {
+    const { value, valid } = this.clientForm;
+
+    if (valid) {
+      const client = this.dataFormBuilder(value);
+      this.createClient(client);
+    } else {
+      alert('Formulário inválido! Preencha todos os campos');
+    }
+  }
+
+  public handleNavigate(route: string) {
+    this.router.navigate([route]);
   }
 }

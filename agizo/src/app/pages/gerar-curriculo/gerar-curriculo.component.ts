@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-gerar-curriculo',
   templateUrl: './gerar-curriculo.component.html',
   styleUrls: ['./gerar-curriculo.component.scss'],
 })
 export class GerarCurriculoComponent implements OnInit {
-  private count = 1;
-
   constructor() {}
 
   ngOnInit(): void {
-    document.getElementById('slide').style.marginLeft = '0';
+    document.getElementById('slide').style.marginLeft = '0%';
+  }
+
+  slide1(): void {
+    document.getElementById('slide').style.marginLeft = '0%';
   }
 
   slide2(): void {

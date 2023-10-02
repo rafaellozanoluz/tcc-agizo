@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "jsonserver": "json-server --no-cors --watch src/server/db.json --routes src/server/routes.json",
+    "jsonserver": "json-server --no-cors --watch src/server/db.json",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
   "private": true,

@@ -5,7 +5,7 @@ import { InicialRecrutadorComponent } from '../../pages/inicial-recrutador/inici
 import { InicialAdministradorComponent } from '../../pages/inicial-administrador/inicial-administrador.component';
 import { GerarCurriculoComponent } from '../../pages/gerar-curriculo/gerar-curriculo.component';
 import { VisualizarCurriculoComponent } from '../../pages/visualizar-curriculo/visualizar-curriculo.component';
-import { AuthGuard } from '../auth-layout/auth.guard';
+import { AuthGuard } from './auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
   {

@@ -12,7 +12,7 @@
 
 
 
-          <form role="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <form role="form" [formGroup]="clientForm" (submit)="onSubmit()">
 
             <div class="form-group">
               
@@ -29,10 +29,11 @@
                   <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                 </div>
                 <input
-                  class="form-control"
-                  placeholder="Nome"
-                  type="text"
-                  formControlName="username"
+                class="form-control"
+                placeholder="Nome"
+                type="text"
+                formControlName="name"
+                required
                 />
               </div>
             </div>
@@ -43,10 +44,11 @@
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
                 <input
-                  class="form-control"
-                  placeholder="Email"
-                  type="email"
-                  formControlName="email"
+                class="form-control"
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+                required
                 />
               </div>
             </div>
@@ -61,6 +63,7 @@
                   placeholder="Senha"
                   type="password"
                   formControlName="password"
+                  required
                 />
               </div>
             </div>
@@ -88,10 +91,11 @@
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
                     <input
-                      class="form-control"
-                      placeholder="CPF"
-                      type="text"
-                      formControlName="cpf"
+                    class="form-control"
+                    placeholder="CPF"
+                    type="number"
+                    formControlName="cpf"
+                    required
                     />
                   </div>
                 </div>
@@ -103,10 +107,11 @@
                       <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
                     </div>
                     <input
-                      class="form-control"
-                      placeholder="Telefone"
-                      type="tel"
-                      formControlName="tel"
+                    class="form-control"
+                    placeholder="Telefone/Celular"
+                    type="number"
+                    formControlName="cellphone"
+                    required
                     />
                   </div>
                 </div>
@@ -122,11 +127,12 @@
                         <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="CEP"
-                        type="text"
-                        formControlName="cep"
-                        (blur)="onBlur($event)"
+                      class="form-control"
+                      placeholder="CEP"
+                      type="number"
+                      formControlName="cep"
+                      (blur)="onBlur($event)"
+                      required
                       />
                     </div>
                   </div>
@@ -138,10 +144,11 @@
                         <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="UF"
-                        type="text"
-                        formControlName="state"
+                      class="form-control"
+                      placeholder="UF"
+                      type="text"
+                      formControlName="uf"
+                      readonly
                       />
                     </div>
                   </div>
@@ -156,10 +163,11 @@
                         <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="Cidade"
-                        type="text"
-                        formControlName="city"
+                      class="form-control"
+                      placeholder="Cidade"
+                      type="text"
+                      formControlName="localidade"
+                      readonly
                       />
                     </div>
                   </div>
@@ -171,10 +179,10 @@
                         <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                       </div>
                       <input
-                        class="form-control"
-                        placeholder="Bairro"
-                        type="text"
-                        formControlName="neighborhood"
+                      class="form-control"
+                      placeholder="Bairro"
+                      type="text"
+                      formControlName="bairro"
                       />
                     </div>
                   </div>
@@ -187,10 +195,10 @@
                     <span class="input-group-text"><i class="ni ni-pin-3"></i></span>
                   </div>
                   <input
-                    class="form-control"
-                    placeholder="Rua"
-                    type="text"
-                    formControlName="street"
+                  class="form-control"
+                  placeholder="Logradouro"
+                  type="text"
+                  formControlName="logradouro"
                   />
                 </div>
               </div>

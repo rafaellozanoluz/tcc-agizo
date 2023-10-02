@@ -8,17 +8,10 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
-import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { SharedModule } from './shared';
-import { InicialRecrutadorComponent } from './pages/inicial-recrutador/inicial-recrutador.component';
-import { InicialAdministradorComponent } from './pages/inicial-administrador/inicial-administrador.component';
-import { InicialCandidatoComponent } from './pages/inicial-candidato/inicial-candidato.component';
-import { HomeComponent } from './pages/home/home.component';
-import { GerarCurriculoComponent } from './pages/gerar-curriculo/gerar-curriculo.component';
-import { VisualizarCurriculoComponent } from './pages/visualizar-curriculo/visualizar-curriculo.component';
 
 @NgModule({
   imports: [
@@ -30,19 +23,8 @@ import { VisualizarCurriculoComponent } from './pages/visualizar-curriculo/visua
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    SharedModule,
   ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent,
-    InicialRecrutadorComponent,
-    InicialAdministradorComponent,
-    InicialCandidatoComponent,
-    HomeComponent,
-    GerarCurriculoComponent,
-    VisualizarCurriculoComponent,
-  ],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

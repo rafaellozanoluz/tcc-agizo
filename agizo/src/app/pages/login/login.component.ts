@@ -1,56 +1,89 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioService } from 'src/app/auth/services/usuario.service';
-import { LoginService } from 'src/app/layouts/auth-layout/services/login.service';
-import { Login } from 'src/app/shared';
+import { AuthService } from 'src/app/services';
+import { MODEL } from 'src/app/shared';
+import { Login } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  @ViewChild('formLogin') formLogin!: NgForm;
-  login: Login = new Login();
-  loading: boolean = false;
-  message!: string;
+export class LoginComponent implements OnInit {
+  public loginForm: FormGroup;
+  public message: string;
 
   constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router,
-    private loginService: LoginService,
-    private userService: UsuarioService,
     private route: ActivatedRoute
   ) {
-    if (this.loginService.userLogged) {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+
+    if (this.authService.userLogged) {
       this.router.navigate(['/inicial-candidato']);
     }
   }
-  ngOnInit(): void {
+
+  ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.message = params['error'];
     });
   }
 
-  logar(): void {
-    this.loading = true;
-
-    const { login, password } = this.formLogin.form.value;
-    if (login !== undefined && password !== undefined) {
-      this.userService.login({ login, password }).subscribe((usu) => {
-        if (usu != null) {
-          this.loginService.userLogged = usu;
-          this.loading = false;
-          const isUserClient = this.loginService.userLogged.profile === 'candidato';
-          this.router.navigate([isUserClient ? '/inicial-candidato' : 'inicial-administrador']);
+  private Login(login: MODEL.Login) {
+    this.authService.login(login).subscribe(
+      (response) => {
+        const user = response[0]; //TROCAR PARA QUANDO VIER DO BACKEND, REMOVER ARRAY
+        console.log('usuario repsonse', user);
+        if (user !== null && user !== undefined) {
+          this.authService.userLogged = user;
+          this.handleNavigate(user.type);
         } else {
           this.message = 'Usuário/Senha inválidos.';
         }
-      });
-    } else {
-      this.message = 'Preencha os campos de login para acessar o sistema';
-    }
-    this.loading = false;
+      },
+      (error) => {
+        console.log('erro para login', error);
+        alert(`Ocorreu um erro ao logar`);
+      }
+    );
   }
-  ngOnDestroy() {}
+
+  public onSubmit() {
+    const { value, valid } = this.loginForm;
+
+    if (valid) {
+      const { email, password } = value;
+      const login = new Login(email, password);
+      this.Login(login);
+    } else {
+      alert('Formulário inválido! Preencha todos os campos');
+    }
+  }
+
+  public handleNavigate(userType: string) {
+    let route: string;
+
+    switch (userType) {
+      case 'candidato':
+        route = '/inicial-candidato';
+        break;
+      case 'administrador':
+        route = '/inicial-administrador';
+        break;
+      case 'recrutador':
+        route = '/inicial-recrutador';
+        break;
+      default:
+        route = '/home';
+    }
+
+    this.router.navigate([route]);
+  }
 }

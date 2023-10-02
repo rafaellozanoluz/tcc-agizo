@@ -7,38 +7,39 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginService } from './services/login.service';
+import { AuthService } from 'src/app/services';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const usuarioLogado = this.loginService.userLogged;
-    let url = state.url;
+    const userLogged = this.authService.userLogged;
+    const url = state.url;
 
-    if (usuarioLogado) {
-      console.log('usuario logado', usuarioLogado.profile);
+    if (userLogged) {
+      console.log('usuario logado', userLogged.type);
       const role = route.data?.['role'];
       console.log('role', role);
-      if (role && role.indexOf(usuarioLogado.profile) === -1) {
-        // Se o perfil do usuário não está no perfil da rota
-        // vai para login
-        this.router.navigate(['/login'], { queryParams: { error: 'Proibido o acesso a ' + url } });
+
+      if (role && role.indexOf(userLogged.type) === -1) {
+        this.router.navigate(['/login'], {
+          queryParams: { error: 'Proibido o acesso a ' + url },
+        });
         return false;
       }
-      // em qualquer outro caso, permite o acesso
       return true;
     }
-    // Se não está logado, vai para login
+
     this.router.navigate(['/login'], {
       queryParams: { error: 'Deve fazer o login antes de acessar ' + url },
     });
+
     return false;
   }
 }

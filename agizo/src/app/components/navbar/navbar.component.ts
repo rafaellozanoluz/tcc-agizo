@@ -1,8 +1,8 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Location } from '@angular/common';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/layouts/auth-layout/services/login.service';
+import { AuthService } from 'src/app/services';
+import { ROUTES } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-navbar',
@@ -13,19 +13,17 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  public username: string;
   constructor(
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private loginService: LoginService
+    private authService: AuthService
   ) {
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
-    this.username = this.loginService.userLogged.name;
   }
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -38,11 +36,14 @@ export class NavbarComponent implements OnInit {
         return this.listTitles[item].title;
       }
     }
-    return 'inicial-candidato';
+    return 'home';
   }
 
-  logout() {
-    this.loginService.logout();
-    this.router.navigate(['/login']);
+  public handleNavigate(route: string) {
+    this.router.navigate([route]);
+  }
+  public handleLogout() {
+    this.authService.logout();
+    this.handleNavigate('/login');
   }
 }

@@ -1,19 +1,48 @@
 {
-  "usuarios": [
+  "users": [
     {
       "id": 1,
-      "name": "Pedro",
-      "login": "pedro@email.com",
+      "name": "Maria",
+      "cpf": 123,
+      "email": "candidato@email.com",
       "password": "123",
-      "profile": "candidato",
-      "cpf": "123123",
-      "tel": "123123",
-      "number": "",
-      "street": "Rua Gastão Luiz Cruls",
-      "neighborhood": "Bairro Alto",
-      "city": "Curitiba",
-      "state": "PR",
-      "cep": "82840180"
+      "cellphone": 123,
+      "type": "candidato",
+      "address": {
+        "cep": "82840-180",
+        "logradouro": "Rua Gastão Luiz Cruls",
+        "complemento": "até 1844/1845",
+        "bairro": "Bairro Alto",
+        "localidade": "Curitiba",
+        "uf": "PR"
+      }
+    },
+    {
+      "id": 2,
+      "name": "José",
+      "cpf": 123,
+      "email": "admin@email.com",
+      "password": "123",
+      "cellphone": 123,
+      "type": "administrador",
+      "salary": 5000,
+      "address": {
+        "cep": "82840-180",
+        "logradouro": "Rua Gastão Luiz Cruls",
+        "complemento": "até 1844/1845",
+        "bairro": "Bairro Alto",
+        "localidade": "Curitiba",
+        "uf": "PR"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Pedro",
+      "cpf": 123,
+      "email": "recrutador@email.com",
+      "password": "123",
+      "cellphone": 123,
+      "type": "recrutador"
     }
   ]
 }
