@@ -7,32 +7,16 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
   styleUrls: ['./curriculo-experiencia.component.scss'],
 })
 export class CurriculoExperienciaComponent implements OnInit {
-  experienceForm: FormGroup;
+  constructor() {}
 
-  constructor(private fb: FormBuilder) {
-    this.experienceForm = this.fb.group({
-      experiences: this.fb.array([this.createExperience()]),
-    });
+  experiencias: any[] = [{ cargo: '', local: '', descricao: '', dataInicio: '', dataFim: '' }];
+
+  adicionarExperiencia() {
+    this.experiencias.push({ cargo: '', local: '', descricao: '', dataInicio: '', dataFim: '' });
   }
 
-  createExperience(): FormGroup {
-    return this.fb.group({
-      cargo: '',
-      empresa: '',
-      descricao: '',
-      dataInicio: '',
-      dataFim: '',
-    });
-  }
-
-  addExperience(): void {
-    const experiencesArray = this.experienceForm.get('experiences') as FormArray;
-    experiencesArray.push(this.createExperience());
-  }
-
-  removeExperience(index: number): void {
-    const experiencesArray = this.experienceForm.get('experiences') as FormArray;
-    experiencesArray.removeAt(index);
+  removerExperiencia(index: number) {
+    this.experiencias.splice(index, 1);
   }
 
   ngOnInit(): void {}
