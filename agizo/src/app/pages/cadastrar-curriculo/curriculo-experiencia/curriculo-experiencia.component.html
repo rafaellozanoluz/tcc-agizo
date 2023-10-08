@@ -1,62 +1,71 @@
 <div class="container">
-
-  <h3 class="title-etapa">Informações sobre sua experiência</h3>  
-   
-  <form role="form">
-      <div class="form-group">
-          
-          <div class="title-question">
+    <h3 class="title-etapa">Informações sobre sua experiência</h3>
+    <div [formGroup]="experienceForm" role="form">
+      <div formArrayName="experiences">
+        <div *ngFor="let experience of experienceForm.get('experiences'); let i = index" [formGroupName]="i">
+          <div class="form-group">
+            <div class="title-question">
+                <i class="fa fa-briefcase"></i>
+                <label class="question">Cargo</label>
+            </div>           
+            <div class="resposta">
+                <input class="form-control" type="text" placeholder="Nome do cargo" formControlName="cargo">
+            </div>
+  
+            <div class="title-question">
               <i class="fa fa-briefcase"></i>
-              <label class="question">Cargo</label>
-          </div>           
-          <div class="resposta">
-              <input class="form-control" type="text" placeholder="Nome do cargo">
-          </div>
-
-          <div class="title-question">
-              <i class="fa fa-align-justify"></i>
-              <label class="question">Descrição da atividade</label>
-          </div>           
-          <div class="resposta">
-              <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Conte em poucas palavras o que fazia" required></textarea>
-          </div>
-
-          <div class="row">
-              <div class="col-4">
-                  <div class="title-question">
-                      <i class="fa fa-calendar"></i>
-                      <label class="question">Data de inicio</label>
-                  </div>           
-                  <div class="resposta">
-                      <input
-                          class="form-control"
-                          placeholder="Data Inicio"
-                          type="date"
-                          formControlName="dateIn"
-                      />
+              <label class="question">Empresa</label>
+              </div>           
+              <div class="resposta">
+                  <input class="form-control" type="text" placeholder="Empresa que trabalhou" formControlName="empresa">
+              </div>
+  
+              <div class="title-question">
+                  <i class="fa fa-align-justify"></i>
+                  <label class="question">Descrição da atividade</label>
+              </div>           
+              <div class="resposta">
+                  <textarea class="form-control is-invalid" id="validationTextarea" formControlName="descricao" placeholder="Conte em poucas palavras o que fazia" required></textarea>
+              </div>
+  
+              <div class="row">
+                  <div class="col-4">
+                      <div class="title-question">
+                          <i class="fa fa-calendar"></i>
+                          <label class="question">Data de inicio</label>
+                      </div>           
+                      <div class="resposta">
+                          <input
+                              class="form-control"
+                              placeholder="Data Inicio"
+                              type="date"
+                              formControlName="dataInicio"
+                          />
+                      </div>
                   </div>
-              </div>
-
-              <div class="col-4">
-                  <div class="title-question">
-                      <i class="fa fa-calendar"></i>
-                      <label class="question">Data de fim</label>
-                  </div>           
-                  <div class="resposta">
-                      <input
-                          class="form-control"
-                          placeholder="Data Fim"
-                          type="date"
-                          formControlName="dateOut"
-                      />
+  
+                  <div class="col-4">
+                      <div class="title-question">
+                          <i class="fa fa-calendar"></i>
+                          <label class="question">Data de fim</label>
+                      </div>           
+                      <div class="resposta">
+                          <input
+                              class="form-control"
+                              placeholder="Data Fim"
+                              type="date"
+                              formControlName="dataFim"
+                          />
+                      </div>
                   </div>
-              </div>
-
-              <div class="col-4">
-                  <button type="button" class="btn btn-success">Adicionar</button>
-              </div>
           </div>
-
+          <button type="button" class="btn btn-danger" (click)="removeExperience(i)">Remover</button>
+        </div>
       </div>
-  </form>
-</div>
+      <div class="row">
+        <div class="col-4">
+          <button type="button" class="btn btn-success" (click)="addExperience()">Adicionar</button>
+        </div>
+      </div>
+    </form>
+  </div>

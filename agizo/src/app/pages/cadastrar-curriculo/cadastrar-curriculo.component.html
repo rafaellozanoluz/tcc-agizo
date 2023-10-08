@@ -1,0 +1,34 @@
+<br><br>
+<div class="container">
+
+    <h1 class="title-page">Cadastre as informações do seu currículo!</h1>
+
+    <div class="slider">
+        <div class="slides" class="component">
+              <!-- Use *ngIf para alternar entre os componentes -->
+              <div *ngIf="slideAtual === 1">
+                <app-curriculo-atuacao></app-curriculo-atuacao>
+              </div>
+              <div *ngIf="slideAtual === 2">
+                <app-curriculo-resumo></app-curriculo-resumo>
+              </div>
+              <div *ngIf="slideAtual === 3">
+                <app-curriculo-experiencia></app-curriculo-experiencia>
+              </div>
+              <div *ngIf="slideAtual === 4">
+                <app-curriculo-formacao></app-curriculo-formacao>
+              </div>
+              <div *ngIf="slideAtual === 5">
+                <app-curriculo-habilidades></app-curriculo-habilidades>
+              </div>
+              <div *ngIf="slideAtual === 6">
+                <app-curriculo-adicionais></app-curriculo-adicionais>
+              </div>
+
+              <div class="row justify-content-end" id="button">
+                <button type="button" class="btn btn-primary" id="botao-voltar" (click)="slideVoltar()">Voltar</button>
+                <button type="button" class="btn btn-success" id="botao-proximo" (click)="slideProximo()">Próximo</button>
+              </div>
+        </div>
+    </div>
+</div>

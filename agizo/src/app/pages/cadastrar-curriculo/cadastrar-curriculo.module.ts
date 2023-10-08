@@ -6,7 +6,8 @@ import { CurriculoExperienciaComponent } from '../../pages/cadastrar-curriculo/c
 import { CurriculoFormacaoComponent } from '../../pages/cadastrar-curriculo/curriculo-formacao/curriculo-formacao.component';
 import { CurriculoHabilidadesComponent } from '../../pages/cadastrar-curriculo/curriculo-habilidades/curriculo-habilidades.component';
 import { CurriculoResumoComponent } from '../../pages/cadastrar-curriculo/curriculo-resumo/curriculo-resumo.component';
-import { GerarCurriculoComponent } from '../../pages/cadastrar-curriculo/gerar-curriculo/gerar-curriculo.component';
+import { CadastrarCurriculoComponent } from './cadastrar-curriculo.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,8 @@ import { GerarCurriculoComponent } from '../../pages/cadastrar-curriculo/gerar-c
     CurriculoResumoComponent,
     CurriculoHabilidadesComponent,
     CurriculoAtuacaoComponent,
-    GerarCurriculoComponent,
+    CadastrarCurriculoComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class CadastrarCurriculoModule {}
