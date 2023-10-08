@@ -44,5 +44,80 @@
       "cellphone": 123,
       "type": "recrutador"
     }
+  ],
+  "curriculo":[
+    {
+      "id": "1",
+      "resumo": "Desenvolvedor de software com experiência em desenvolvimento web.",
+      "cabecalho": {
+        "id": "1",
+        "name": "João da Silva",
+        "telefone": "(11) 1234-5678",
+        "email": "joao.silva@email.com",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cargo": "Desenvolvedor de Software"
+      },
+      "formacao": [
+        {
+          "id": "1",
+          "curso": "Bacharelado em Ciência da Computação",
+          "local": "USP",
+          "datainicio": "2016-08-01",
+          "datafim": "2020-07-15"
+        },
+        {
+          "id": "2",
+          "curso": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+          "local": "UFPR",
+          "datainicio": "2020-08-01",
+          "datafim": "2023-07-15"
+        }
+      ],
+      "experiencia": [
+        {
+          "id": "1",
+          "local": "Google",
+          "cargo": "Desenvolvedor Front-end",
+          "descricao": "Desenvolvimento de interfaces de usuário responsivas usando HTML, CSS e JavaScript.",
+          "datainicio": "2019-01-15",
+          "datafim": "2022-06-30"
+        },
+        {
+          "id": "2",
+          "local": "Facebook",
+          "cargo": "Desenvolvedor Back-end",
+          "descricao": "Desenvolvimento de microserviços em Java.",
+          "datainicio": "2022-10-15",
+          "datafim": "2023-06-30"
+        }
+      ],
+      "adicionais": [
+        {
+          "id": "1",
+          "titulo": "Certificação em Java",
+          "descricao": "Concluído o curso de certificação em Java SE 8",
+          "data": "2023-05-15"
+        },
+        {
+          "id": "2",
+          "titulo": "Certificação em Inglês",
+          "descricao": "Concluído o curso de certificação em Inglês avançado",
+          "data": "2023-06-15"
+        }
+      ],
+      "habilidades": [
+        {
+          "id": "1",
+          "descricao": "Desenvolvimento Web",
+          "nivel": "Avançado"
+        },
+        {
+          "id": "2",
+          "descricao": "JAVA",
+          "nivel": "Intermediário"
+        }
+      ]
+    }    
   ]
 }

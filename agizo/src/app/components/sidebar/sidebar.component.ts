@@ -19,6 +19,13 @@ export const ROUTES: RouteInfo[] = [
     permission: ['candidato'],
   },
   {
+    path: '/visualizar-curriculo',
+    title: 'Ver Currículo',
+    icon: 'fa fa-shopping-cart text-green',
+    class: '',
+    permission: ['candidato'],
+  },
+  {
     path: '/inicial-recrutador',
     title: 'Página Inicial - Recrutador',
     icon: 'ni-tv-2 text-primary',
@@ -31,20 +38,6 @@ export const ROUTES: RouteInfo[] = [
     icon: 'fa fa-shopping-cart text-green',
     class: '',
     permission: ['administrador'],
-  },
-  {
-    path: '/gerar-curriculo',
-    title: 'Cadastrar Curriculo',
-    icon: 'fa fa-shopping-cart text-green',
-    class: '',
-    permission: ['candidato'],
-  },
-  {
-    path: '/visualizar-curriculo',
-    title: 'Ver Currículo',
-    icon: 'fa fa-shopping-cart text-green',
-    class: '',
-    permission: ['candidato'],
   },
 ];
 

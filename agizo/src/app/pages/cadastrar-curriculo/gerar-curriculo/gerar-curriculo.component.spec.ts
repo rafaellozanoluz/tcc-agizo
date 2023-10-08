@@ -8,9 +8,8 @@ describe('GerarCurriculoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GerarCurriculoComponent ]
-    })
-    .compileComponents();
+      declarations: [GerarCurriculoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GerarCurriculoComponent);
     component = fixture.componentInstance;

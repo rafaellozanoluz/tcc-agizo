@@ -3,8 +3,8 @@ import { Routes } from '@angular/router';
 import { InicialCandidatoComponent } from '../../pages/inicial-candidato/inicial-candidato.component';
 import { InicialRecrutadorComponent } from '../../pages/inicial-recrutador/inicial-recrutador.component';
 import { InicialAdministradorComponent } from '../../pages/inicial-administrador/inicial-administrador.component';
-import { GerarCurriculoComponent } from '../../pages/gerar-curriculo/gerar-curriculo.component';
 import { VisualizarCurriculoComponent } from '../../pages/visualizar-curriculo/visualizar-curriculo.component';
+
 import { AuthGuard } from './auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
@@ -17,8 +17,11 @@ export const AdminLayoutRoutes: Routes = [
     },
   },
   {
-    path: 'gerar-curriculo',
-    component: GerarCurriculoComponent,
+    path: 'cadastrar-curriculo',
+    loadChildren: () =>
+      import('../../pages/cadastrar-curriculo/cadastrar-curriculo.module').then(
+        (m) => m.CadastrarCurriculoModule
+      ),
     canActivate: [AuthGuard],
     data: {
       role: 'candidato',
