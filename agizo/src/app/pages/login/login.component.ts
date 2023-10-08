@@ -13,6 +13,7 @@ import { Login } from 'src/app/shared/models';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public message: string;
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -85,5 +86,9 @@ export class LoginComponent implements OnInit {
     }
 
     this.router.navigate([route]);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

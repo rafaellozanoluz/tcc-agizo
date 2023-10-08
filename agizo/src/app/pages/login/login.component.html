@@ -27,6 +27,7 @@
                 placeholder="Email"
                 type="email"
                 required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
                 />
               </div>
             </div>
@@ -35,7 +36,12 @@
             (loginForm.controls['email'].dirty ||
               loginForm.controls['email'].touched)
           ">
-              <div *ngIf="loginForm.controls['email'].errors.required">Digite o email</div>
+              <div *ngIf="loginForm.controls['email'].errors.required">
+                <p class="text-danger">E-mail é obrigatório</p>
+              </div>
+              <div *ngIf="loginForm.controls['email'].hasError('pattern')">
+                <p class="text-danger">E-mail inválido. Por favor, insira um e-mail válido.</p>
+              </div>
             </div>
             <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
           </div>
@@ -48,19 +54,28 @@
                   <input
                   class="form-control"
                   placeholder="Senha"
-                  type="password"
+                  [type]="showPassword ? 'text' : 'password'"
                   formControlName="password"
                   required
                   />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      (click)="togglePasswordVisibility()"
+                    >
+                      <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                    </button>
+                  </div>
               </div>
               <div
-              *ngIf="
-              loginForm.controls['password'].invalid &&
-              (loginForm.controls['password'].dirty ||
-                loginForm.controls['password'].touched)
-            "
+                *ngIf="
+                loginForm.controls['password'].invalid &&
+                (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
               >
-                <div *ngIf="loginForm.controls['password'].errors.required">Digite a senha.</div>
+                <div *ngIf="loginForm.controls['password'].errors.required">
+                  <p class="text-danger">Senha é obrigatório</p>
+                </div>
               </div>
           </div>
           <div class="row my-4">

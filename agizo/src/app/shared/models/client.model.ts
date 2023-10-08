@@ -8,8 +8,7 @@ export class Client extends MODEL.User {
     public email?: string,
     public password?: string,
     public cellphone?: string,
-    public type?: string,
-    public address?: MODEL.Address
+    public type?: string
   ) {
     super(id, name, cpf, email, password, cellphone, type);
   }

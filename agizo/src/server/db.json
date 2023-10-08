@@ -7,15 +7,7 @@
       "email": "candidato@email.com",
       "password": "123",
       "cellphone": 123,
-      "type": "candidato",
-      "address": {
-        "cep": "82840-180",
-        "logradouro": "Rua Gastão Luiz Cruls",
-        "complemento": "até 1844/1845",
-        "bairro": "Bairro Alto",
-        "localidade": "Curitiba",
-        "uf": "PR"
-      }
+      "type": "candidato"
     },
     {
       "id": 2,
@@ -24,16 +16,7 @@
       "email": "admin@email.com",
       "password": "123",
       "cellphone": 123,
-      "type": "administrador",
-      "salary": 5000,
-      "address": {
-        "cep": "82840-180",
-        "logradouro": "Rua Gastão Luiz Cruls",
-        "complemento": "até 1844/1845",
-        "bairro": "Bairro Alto",
-        "localidade": "Curitiba",
-        "uf": "PR"
-      }
+      "type": "administrador"
     },
     {
       "id": 3,
@@ -43,9 +26,68 @@
       "password": "123",
       "cellphone": 123,
       "type": "recrutador"
+    },
+    {
+      "id": 4,
+      "name": "Pedro",
+      "cpf": 10407923918,
+      "email": 41997742181,
+      "password": "pedro@email.com",
+      "cellphone": "recrutador"
+    },
+    {
+      "id": 5,
+      "name": "aasd",
+      "cpf": 10,
+      "email": 14,
+      "password": "adsa",
+      "cellphone": "candidato"
+    },
+    {
+      "id": 6,
+      "name": "nome",
+      "cpf": 1,
+      "email": 11,
+      "password": "email",
+      "cellphone": "recrutador"
+    },
+    {
+      "id": 7,
+      "name": "recrutador",
+      "cpf": "nome",
+      "email": "email",
+      "cellphone": 1,
+      "type": 11
+    },
+    {
+      "id": 8,
+      "name": "recrutador",
+      "cpf": "nome",
+      "email": "email",
+      "password": "senha",
+      "cellphone": 1,
+      "type": 11
+    },
+    {
+      "id": 9,
+      "name": "nome",
+      "cpf": 1,
+      "email": "email",
+      "password": "senha",
+      "cellphone": 11,
+      "type": "recrutador"
+    },
+    {
+      "id": 10,
+      "name": "NOEM",
+      "cpf": 1,
+      "email": "EMAIL",
+      "password": "SENHA",
+      "cellphone": 11,
+      "type": "recrutador"
     }
   ],
-  "curriculo":[
+  "curriculo": [
     {
       "id": "1",
       "resumo": "Desenvolvedor de software com experiência em desenvolvimento web.",
@@ -105,7 +147,7 @@
           "descricao": "Concluído o curso de certificação em Inglês avançado",
           "data": "2023-06-15"
         }
-      ], 
+      ],
       "habilidades": [
         {
           "id": "1",
@@ -118,6 +160,6 @@
           "nivel": "Intermediário"
         }
       ]
-    }    
+    }
   ]
 }
