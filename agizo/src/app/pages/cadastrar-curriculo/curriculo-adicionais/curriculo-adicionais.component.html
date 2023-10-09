@@ -3,6 +3,8 @@
     <h3 class="title-etapa">Informações adicionais</h3>  
      
     <form role="form">
+        <div *ngFor="let adicional of adicionais; let i = index" class="adicional">
+        <div class="adicional-item">
         <div class="form-group">
             
             <div class="title-question">
@@ -10,7 +12,7 @@
                 <label class="question">Informações adicionais</label>
             </div>           
             <div class="resposta">
-                <select class="form-control">
+                <select class="form-control" [(ngModel)]="adicional.tipo">
                     <option value="1">Título monográfico</option>
                     <option value="2">Prêmios e conquistas</option>
                     <option value="3">Projetos</option>
@@ -25,14 +27,14 @@
                 <label class="question">Descrição</label>
             </div>           
             <div class="resposta">
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição" required></textarea>
+                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição" [(ngModel)]="adicional.descricao" required></textarea>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="title-question">
                         <i class="fa fa-calendar"></i>
-                        <label class="question">Data de aquisição</label>
+                        <label class="question" [(ngModel)]="adicional.dataAquisicao">Data de aquisição</label>
                     </div>           
                     <div class="resposta">
                         <input
@@ -43,10 +45,12 @@
                         />
                     </div>
                 </div>
-                <div class="col-4">
-                    <button type="button" class="btn btn-success">Adicionar</button>
-                </div>
             </div>
         </div>
+
+        <button type="button" class="btn btn-danger" (click)="removerAdicional(i)">Remover</button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)="adicionarAdicional()">Adicionar</button>
     </form>
 </div>

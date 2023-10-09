@@ -9,7 +9,15 @@ export class CurriculoFormacaoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  formacoes: any[] = [{ curso: '', local: '', dataInicio: '', dataFim: '' }];
+
+  adicionarFormacao() {
+    this.formacoes.push({ curso: '', local: '', dataInicio: '', dataFim: '' });
   }
 
+  removerFormacao(index: number) {
+    this.formacoes.splice(index, 1);
+  }
+
+  ngOnInit(): void { }
 }

@@ -1,9 +1,9 @@
-<br><br>
+<br><br>  
 <div class="container">
-
-    <h1 class="title-page">Cadastre as informações do seu currículo!</h1>
-
-    <div class="slider">
+    
+  <h1 class="title-page">Cadastre as informações do seu currículo!</h1>
+    
+    <div class="slider">  
         <div class="slides" class="component">
               <!-- Use *ngIf para alternar entre os componentes -->
               <div *ngIf="slideAtual === 1">
@@ -26,8 +26,9 @@
               </div>
 
               <div class="row justify-content-end" id="button">
-                <button type="button" class="btn btn-primary" id="botao-voltar" (click)="slideVoltar()">Voltar</button>
-                <button type="button" class="btn btn-success" id="botao-proximo" (click)="slideProximo()">Próximo</button>
+                <button *ngIf="slideAtual > 1" type="button" class="btn btn-primary" id="botao-voltar" (click)="slideVoltar()">Voltar</button>
+                <button *ngIf="slideAtual < 6" type="button" class="btn btn-success" id="botao-proximo" (click)="slideProximo()">Próximo</button>
+                <button *ngIf="slideAtual === 6" type="button" class="btn btn-success" id="botao-proximo" (click)="slideProximo()">Salvar</button>
               </div>
         </div>
     </div>
