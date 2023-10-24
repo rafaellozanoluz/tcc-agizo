@@ -47,11 +47,22 @@ export class VisualizarCurriculoComponent implements OnInit {
   public convertToPDF() {
     var content = document.getElementById('pdfContainer');
     html2canvas(content).then((canvas) => {
-      const contentDataURL = canvas.toDataURL('image/png');
+      const contentDataURL = canvas.toDataURL('image/jpeg');
       let pdf = new jsPDF('p', 'mm', 'a4');
+      var pageHeight = 291.5;
       var width = pdf.internal.pageSize.getWidth();
       var height = (canvas.height * width) / canvas.width;
-      pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height);
+      var heightLeft = height;
+      var position = 0;
+      pdf.addImage(contentDataURL, 'JPEG', 0, position, width, height);
+      heightLeft -= pageHeight;
+
+      while(heightLeft >= 0){
+        position = heightLeft - height;
+        pdf.addPage();
+        pdf.addImage(contentDataURL, 'JPEG', 0, position, width, height);
+        heightLeft -= pageHeight;
+      }
       pdf.save('Currículos AGIZO.pdf');
     });
   }

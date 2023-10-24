@@ -1,94 +1,95 @@
-  <br><br>
-  <div class="container">
-        <div class="pdfContainer" id="pdfContainer">
-            <div class="left_Side">
-                <div class="profileText">
-                    <div class="imgBox">
-                        <img src="img.jpg">
-                    </div>
-                    <h2>{{ nome }}<br><span>{{ cargo }}</span></h2>
+<br><br>
+<div class="container">
+    <div class="pdfContainer" id="pdfContainer" value="Currículos AGIZO.pdf">
+        <div class="left_Side">
+            <div class="profileText">
+                <div class="imgBox">
+                    <img src="img.jpg">
                 </div>
-                <div class="contato">
-                    <h3 class="title">Informações de Contato</h3>
-                    <ul>
-                        <li>
-                            <span class="icon"></span>
-                            <span class="text">{{ telefone }}</span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span class="text">{{ email }}</span>
-                        </li>
-                        <li>
-                            <span class="icon"></span>
-                            <span class="text">{{ cidade }}/{{ estado }}</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="habilidades">
-                    <h3 class="title">Habilidades</h3>
-                    <div *ngFor="let habilidade of habilidades">
-                        <div class="box">
-                            <h4>{{ habilidade.descricao }}</h4>
-                            <h5>{{ habilidade.nivel }}</h5>
-                        </div>  
-                    </div>                
-                </div>
+                <h2>{{ nome }}<br><span>{{ cargo }}</span></h2>
+            </div>
+            <div class="contato">
+                <h3 class="title">Informações de Contato</h3>
+                <ul>
+                    <li>
+                        <span class="icon"></span>
+                        <span class="text">{{ telefone }}</span>
+                    </li>
+                    <li>
+                        <span class="icon"></span>
+                        <span class="text">{{ email }}</span>
+                    </li>
+                    <li>
+                        <span class="icon"></span>
+                        <span class="text">{{ cidade }}/{{ estado }}</span>
+                    </li>
+                </ul>
+            </div>
+              
+            <div class="habilidades">
+                <h3 class="title">Habilidades</h3>
+                <div *ngFor="let habilidade of habilidades">
+                    <div class="box">
+                        <h4>{{ habilidade.descricao }}</h4>
+                        <h5>{{ habilidade.nivel }}</h5>
+                    </div>  
+                </div>                
+            </div>
 
-                <div class="educacao">
-                    <h3 class="title">Educação</h3>
-                    <ul *ngFor="let formacao of formacao">
-                        <li>
-                            <h4>{{ formacao.curso }}</h4>
-                            <h4>{{ formacao.local }}</h4>
-                            <h5>{{ formacao.datainicio }} até {{ formacao.datafim }}</h5>
-                        </li>
-                    </ul>
+            <div class="educacao">
+                <h3 class="title">Educação</h3>
+                <ul *ngFor="let formacao of formacao">
+                    <li>
+                        <h4>{{ formacao.curso }}</h4>
+                        <h4>{{ formacao.local }}</h4>
+                        <h5>{{ formacao.datainicio }} até {{ formacao.datafim }}</h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="right_Side">
+            <div class="about">
+                <h2 class="title2">Perfil</h2>
+                <p>
+                    {{ resumo }}
+                </p>
+            </div>
+            <div class="about">
+                <h2 class="title2">Experiência</h2>
+                <div class="box" *ngFor="let experiencia of experiencia">
+                    <div class="years_experience">
+                        <h5>{{ experiencia.datainicio }} até {{ experiencia.datafim }}</h5>
+                    </div>
+                    <div class="text">
+                        <h4>{{ experiencia.local }}</h4>
+                        <h4>{{ experiencia.cargo }}</h4>
+                        <p>
+                            {{ experiencia.descricao }}
+                        </p>
+                    </div>                        
                 </div>
             </div>
-            <div class="right_Side">
-                <div class="about">
-                    <h2 class="title2">Perfil</h2>
-                    <p>
-                        {{ resumo }}
-                    </p>
-                </div>
-                <div class="about">
-                    <h2 class="title2">Experiência</h2>
-                    <div class="box" *ngFor="let experiencia of experiencia">
-                        <div class="years_experience">
-                            <h5>{{ experiencia.datainicio }} até {{ experiencia.datafim }}</h5>
-                        </div>
-                        <div class="text">
-                            <h4>{{ experiencia.local }}</h4>
-                            <h4>{{ experiencia.cargo }}</h4>
-                            <p>
-                                {{ experiencia.descricao }}
-                            </p>
-                        </div>                        
+            <div class="about">
+                <div class="html2pdf_page-break"></div>
+                <h2 class="title2">Informações Adicionais</h2>
+                <div class="box" *ngFor="let adicionais of adicionais">
+                    <div class="years_experience">
+                        <h5>{{ adicionais.data }}</h5>
                     </div>
-                </div>
-                <div class="about">
-                    <h2 class="title2">Informações Adicionais</h2>
-                    <div class="box" *ngFor="let adicionais of adicionais">
-                        <div class="years_experience">
-                            <h5>{{ adicionais.data }}</h5>
-                        </div>
-                        <div class="text">
-                            <h4>{{ adicionais.titulo }}</h4>
-                            <p>
-                                {{ adicionais.descricao }}
-                            </p>
-                        </div>
+                    <div class="text">
+                        <h4>{{ adicionais.titulo }}</h4>
+                        <p>
+                            {{ adicionais.descricao }}
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
-
-    <div style="text-align: center;" class="botoes">
-        <div>
-            <input type="button" style="background-color: rgb(0, 255, 170);" class="btn" value="Gerar PDF" (click)="convertToPDF()">
-        </div>       
     </div>
+</div>    
+
+<div style="text-align: center;" class="botoes">
+    <div>
+        <input type="button" style="background-color: rgb(0, 255, 170);" class="btn btn-print" value="Gerar PDF" (click)="convertToPDF()">
+    </div>          
+</div>
