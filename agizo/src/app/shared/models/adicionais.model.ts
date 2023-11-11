@@ -4,6 +4,6 @@ export class Adicionais {
     public titulo?: string,
     public descricao?: string,
     public data?: string,
-    public idcurriculo?: string
+    public idusuario?: string
   ) {}
 }

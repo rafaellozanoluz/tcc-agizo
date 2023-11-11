@@ -1,62 +1,59 @@
 <div class="container">
 
-    <h3 class="title-etapa">Informações sobre sua formação</h3>  
-     
+    <h3 class="title-etapa">Informações sobre sua formação</h3>
+
     <form role="form">
-        <div class="form-group"> 
-            
-            <div class="title-question">
-                <i class="fa fa-briefcase"></i>
-                <label class="question">Formação</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" placeholder="Nome do curso">
-            </div>
+        <div *ngFor="let formacao of formacoes; let i = index" class="formacao" [formGroup]="formacaoForm" role="form">
+            <div class="formacao-item">
 
-            <div class="title-question">
-                <i class="fa fa-align-justify"></i>
-                <label class="question">Instituição de ensino</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" placeholder="Informe aonde você realizou o curso">
-            </div>
+                <div class="form-group">
 
-            <div class="row">
-                <div class="col-4">
                     <div class="title-question">
-                        <i class="fa fa-calendar"></i>
-                        <label class="question">Data de inicio</label>
-                    </div>           
+                        <i class="fa fa-briefcase"></i>
+                        <label class="question">Formação</label>
+                    </div>
                     <div class="resposta">
-                        <input
-                            class="form-control"
-                            placeholder="Data Inicio"
-                            type="date"
-                            formControlName="dateIn"
-                        />
+                        <input class="form-control" type="text" placeholder="Nome do curso" formControlName="curso" [(ngModel)]="formacao.curso"
+                            name="curso">
+                    </div>
+
+                    <div class="title-question">
+                        <i class="fa fa-align-justify"></i>
+                        <label class="question">Instituição de ensino</label>
+                    </div>
+                    <div class="resposta">
+                        <input class="form-control" type="text" placeholder="Informe aonde você realizou o curso"
+                            [(ngModel)]="formacao.local" name="local" formControlName="local">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="title-question">
+                                <i class="fa fa-calendar"></i>
+                                <label class="question">Data de inicio</label>
+                            </div>
+                            <div class="resposta">
+                                <input class="form-control" placeholder="Data Inicio" type="date"
+                                formControlName="datainicio" [(ngModel)]="formacao.dataInicio" name="dataInicio" />
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="title-question">
+                                <i class="fa fa-calendar"></i>
+                                <label class="question">Data de fim</label>
+                            </div>
+                            <div class="resposta">
+                                <input class="form-control" placeholder="Data Fim" type="date" formControlName="datafim"
+                                    [(ngModel)]="formacao.dataFim" name="dataFim" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-4">
-                    <div class="title-question">
-                        <i class="fa fa-calendar"></i>
-                        <label class="question">Data de fim</label>
-                    </div>           
-                    <div class="resposta">
-                        <input
-                            class="form-control"
-                            placeholder="Data Fim"
-                            type="date"
-                            formControlName="dateOut"
-                        />
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <button type="button" class="btn btn-success">Adicionar</button>
-                </div>
+                <button type="button" class="btn btn-danger" (click)="removerFormacao(i)">Remover</button>
             </div>
-
         </div>
+        <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarFormacao()">Adicionar</button>
+        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarFormacao()">Salvar</button>
     </form>
 </div>

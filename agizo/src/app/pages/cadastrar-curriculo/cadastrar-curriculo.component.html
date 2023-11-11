@@ -26,8 +26,9 @@
               </div>
 
               <div class="row justify-content-end" id="button">
-                <button type="button" class="btn btn-primary" id="botao-voltar" (click)="slideVoltar()">Voltar</button>
-                <button type="button" class="btn btn-success" id="botao-proximo" (click)="slideProximo()">Próximo</button>
+                <button *ngIf="slideAtual > 1" type="button" class="btn btn-primary" id="botao-voltar" (click)="slideVoltar()">Voltar</button>
+                <button *ngIf="slideAtual < 6" type="button" class="btn btn-success" id="botao-proximo" (click)="slideProximo()">Próximo</button>
+                <button *ngIf="slideAtual === 6" type="button" class="btn btn-success" routerLinkActive="active" [routerLink]="['/visualizar-curriculo']">Finalizar cadastro</button>
               </div>
         </div>
     </div>

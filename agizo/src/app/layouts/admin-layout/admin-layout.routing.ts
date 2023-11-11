@@ -5,6 +5,7 @@ import { InicialRecrutadorComponent } from '../../pages/inicial-recrutador/inici
 import { InicialAdministradorComponent } from '../../pages/inicial-administrador/inicial-administrador.component';
 import { VisualizarCurriculoComponent } from '../../pages/visualizar-curriculo/visualizar-curriculo.component';
 import { CadastrarCurriculoComponent } from '../../pages/cadastrar-curriculo/cadastrar-curriculo.component';
+import { CurriculogeralComponent } from '../../pages/curriculogeral/curriculogeral.component';
 
 import { AuthGuard } from './auth.guard';
 
@@ -47,6 +48,14 @@ export const AdminLayoutRoutes: Routes = [
   {
     path: 'inicial-recrutador',
     component: InicialRecrutadorComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: 'recrutador',
+    },
+  },
+  {
+    path: 'curriculogeral',
+    component: CurriculogeralComponent,
     canActivate: [AuthGuard],
     data: {
       role: 'recrutador',

@@ -11,7 +11,7 @@
               <img class="image-navbar" src="../../../assets/img/logo_agizo.png"/>
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm font-weight-bold">Candidato</span>
+              <span class="mb-0 text-sm font-weight-bold">{{ authService.userLogged?.name || 'Candidato' }}</span>
             </div>
           </div>
         </a>

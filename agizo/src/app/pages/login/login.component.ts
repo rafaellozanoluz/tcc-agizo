@@ -40,8 +40,8 @@ export class LoginComponent implements OnInit {
   private Login(login: MODEL.Login) {
     this.authService.login(login).subscribe(
       (response) => {
-        const user = response[0]; //TROCAR PARA QUANDO VIER DO BACKEND, REMOVER ARRAY
-        console.log('usuario repsonse', user);
+        const user = response; // TROCAR PARA QUANDO VIER DO BACKEND, REMOVER ARRAY
+        console.log('usuario response', user);
         if (user !== null && user !== undefined) {
           this.authService.userLogged = user;
           this.handleNavigate(user.type);

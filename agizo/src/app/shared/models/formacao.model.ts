@@ -5,6 +5,6 @@ export class Formacao {
     public local?: string,
     public datainicio?: string,
     public datafim?: string,
-    public idcurriculo?: string
+    public idusuario?: string
   ) {}
 }

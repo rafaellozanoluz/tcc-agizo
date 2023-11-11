@@ -33,6 +33,13 @@ export const ROUTES: RouteInfo[] = [
     permission: ['recrutador'],
   },
   {
+    path: '/curriculogeral',
+    title: 'Buscar Currículos',
+    icon: 'ni-tv-2 text-primary',
+    class: '',
+    permission: ['recrutador'],
+  },
+  {
     path: '/inicial-administrador',
     title: 'Página Inicial - Administrador',
     icon: 'fa fa-shopping-cart text-green',

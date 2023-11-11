@@ -29,68 +29,19 @@
     },
     {
       "id": 4,
-      "name": "Pedro",
-      "cpf": 10407923918,
-      "email": 41997742181,
-      "password": "pedro@email.com",
-      "cellphone": "recrutador"
-    },
-    {
-      "id": 5,
-      "name": "aasd",
-      "cpf": 10,
-      "email": 14,
-      "password": "adsa",
-      "cellphone": "candidato"
-    },
-    {
-      "id": 6,
-      "name": "nome",
-      "cpf": 1,
-      "email": 11,
-      "password": "email",
-      "cellphone": "recrutador"
-    },
-    {
-      "id": 7,
-      "name": "recrutador",
-      "cpf": "nome",
-      "email": "email",
-      "cellphone": 1,
-      "type": 11
-    },
-    {
-      "id": 8,
-      "name": "recrutador",
-      "cpf": "nome",
-      "email": "email",
-      "password": "senha",
-      "cellphone": 1,
-      "type": 11
-    },
-    {
-      "id": 9,
-      "name": "nome",
-      "cpf": 1,
-      "email": "email",
-      "password": "senha",
+      "name": "Nicole",
+      "cpf": 100,
+      "email": "nicole@email.com",
+      "password": "123",
       "cellphone": 11,
-      "type": "recrutador"
-    },
-    {
-      "id": 10,
-      "name": "NOEM",
-      "cpf": 1,
-      "email": "EMAIL",
-      "password": "SENHA",
-      "cellphone": 11,
-      "type": "recrutador"
+      "type": "candidato"
     }
   ],
   "curriculo": [
     {
       "id": "1",
       "resumo": "Desenvolvedor de software com experiência em desenvolvimento web.",
+      "idusuario": "1",
       "cabecalho": {
         "id": "1",
         "name": "João da Silva",
@@ -160,6 +111,281 @@
           "nivel": "Intermediário"
         }
       ]
+    }
+  ],
+  "cabecalho": {
+    "id": null,
+    "name": "PEDRO",
+    "telefone": "41997742181",
+    "email": "pedro.horning2546@gmail.com",
+    "cidade": "Curitiba",
+    "estado": "PR",
+    "cargo": "6",
+    "idusuario": "1"
+  },
+  "resumo": {
+    "id": null,
+    "descricao": "adsdasas",
+    "idusuario": "1"
+  },
+  "experiencia": [
+    {
+      "id": "1",
+      "local": "Google",
+      "cargo": "Desenvolvedor Front-end",
+      "descricao": "Desenvolvimento de interfaces de usuário responsivas usando HTML, CSS e JavaScript.",
+      "datainicio": "2019-01-15",
+      "datafim": "2022-06-30",
+      "idusuario": "1"
+    },
+    {
+      "id": "2",
+      "local": "Facebook",
+      "cargo": "Desenvolvedor Back-end",
+      "descricao": "Desenvolvimento de microserviços em Java.",
+      "datainicio": "2022-10-15",
+      "datafim": "2023-06-30",
+      "idusuario": "1"
+    },
+    {
+      "id": "wnazfGn",
+      "local": "META",
+      "cargo": "Desenvolvedor pleno",
+      "descricao": "Desenvolvimento em React",
+      "datainicio": "2023-10-09",
+      "datafim": "2023-10-14",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "ZLOgUzQ",
+      "local": "Desenvolvedor pleno",
+      "cargo": "Desenvolvedor senior",
+      "descricao": "aSSAD",
+      "datainicio": "2023-10-03",
+      "datafim": "2023-10-14",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "m1qeo3F",
+      "local": "fr",
+      "cargo": "Junior",
+      "descricao": "asdas",
+      "datainicio": "2023-10-16",
+      "datafim": "2023-10-17",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "MMMgAgN",
+      "local": "Volvo",
+      "cargo": "Auxiliar Administrativo",
+      "descricao": "Auxiliar nas atividades administrativas da empresa",
+      "datainicio": "2023-10-03",
+      "datafim": "2023-10-14",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "PU_OMIF",
+      "local": "Desenvolvedor pleno",
+      "cargo": "Desenvolvedor pleno",
+      "descricao": "A",
+      "datainicio": "2023-10-13",
+      "datafim": "2023-10-12",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    }
+  ],
+  "formacao": [
+    {
+      "id": "1",
+      "curso": "Bacharelado em Ciência da Computação",
+      "local": "USP",
+      "datainicio": "2016-08-01",
+      "datafim": "2020-07-15",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "2",
+      "curso": "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+      "local": "UFPR",
+      "datainicio": "2020-08-01",
+      "datafim": "2023-07-15",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "NKJ2Af2",
+      "curso": "Analise e desenvolvimento de sistemas",
+      "local": "UFPR",
+      "datainicio": "2023-10-04",
+      "datafim": "2023-10-12",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    }
+  ],
+  "habilidades": [
+    {
+      "id": "1",
+      "descricao": "Desenvolvimento Web",
+      "nivel": "Avançado",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "2",
+      "descricao": "JAVA",
+      "nivel": "Intermediário",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "q3d7wlL",
+      "descricao": "Excel",
+      "nivel": "2",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "_mSWlQ-",
+      "descricao": "Word",
+      "nivel": "3",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    }
+  ],
+  "adicionais": [
+    {
+      "id": "1",
+      "titulo": "Certificação em Java",
+      "descricao": "Concluído o curso de certificação em Java SE 8",
+      "data": "2023-05-15",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "2",
+      "titulo": "Certificação em Inglês",
+      "descricao": "Concluído o curso de certificação em Inglês avançado",
+      "data": "2023-06-15",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
+    },
+    {
+      "id": "XjfoSdN",
+      "titulo": "2",
+      "descricao": "Asasdas",
+      "data": "2023-10-12",
+      "idusuario": {
+        "id": 1,
+        "name": "Maria",
+        "cpf": 123,
+        "email": "candidato@email.com",
+        "password": "123",
+        "cellphone": 123,
+        "type": "candidato"
+      }
     }
   ]
 }

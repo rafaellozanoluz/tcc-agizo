@@ -13,18 +13,21 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
+  public authService: AuthService;
   constructor(
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private authService: AuthService
+    authService: AuthService
   ) {
     this.location = location;
+    this.authService = authService;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
   }
+
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === '#') {

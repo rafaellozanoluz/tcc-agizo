@@ -3,21 +3,19 @@
     <h3 class="title-etapa">Informações adicionais</h3>  
      
     <form role="form">
+        <div *ngFor="let adicional of adicionais; let i = index" class="adicional" [formGroup]="adicionaisForm" role="form">
+        <div class="adicional-item">
         <div class="form-group">
             
-            <div class="title-question">
+            <div class="title-question"> 
                 <i class="fa fa-briefcase"></i>
                 <label class="question">Informações adicionais</label>
             </div>           
             <div class="resposta">
-                <select class="form-control">
-                    <option value="1">Título monográfico</option>
-                    <option value="2">Prêmios e conquistas</option>
-                    <option value="3">Projetos</option>
-                    <option value="4">Voluntariados</option>
-                    <option value="5">Idiomas</option>
-                    <option value="3">Referências</option>
-                </select>  
+                <select class="form-control" formControlName="titulo">
+                    <option value="" disabled selected>Selecione uma área de atuação</option>
+                    <option *ngFor="let titulo of adicionaisgeral" [value]="titulo.descricao">{{ titulo.descricao }}</option>
+                  </select>  
             </div>
 
             <div class="title-question">
@@ -25,28 +23,31 @@
                 <label class="question">Descrição</label>
             </div>           
             <div class="resposta">
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição" required></textarea>
+                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição" formControlName="descricao" [(ngModel)]="adicional.descricao" required></textarea>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="title-question">
                         <i class="fa fa-calendar"></i>
-                        <label class="question">Data de aquisição</label>
+                        <label class="question" [(ngModel)]="adicional.dataAquisicao">Data</label>
                     </div>           
                     <div class="resposta">
                         <input
                             class="form-control"
                             placeholder="Data aquisição"
                             type="date"
-                            formControlName="dateOut"
+                            formControlName="data"
                         />
                     </div>
                 </div>
-                <div class="col-4">
-                    <button type="button" class="btn btn-success">Adicionar</button>
-                </div>
             </div>
         </div>
+
+        <button type="button" class="btn btn-danger" (click)="removerAdicional(i)">Remover</button>
+            </div>
+        </div>
+        <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarAdicional()">Adicionar</button>
+        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarAdicionais()">Salvar</button>
     </form>
 </div>

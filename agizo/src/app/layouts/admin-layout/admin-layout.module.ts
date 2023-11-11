@@ -11,7 +11,7 @@ import { InicialCandidatoComponent } from '../../pages/inicial-candidato/inicial
 import { InicialRecrutadorComponent } from '../../pages/inicial-recrutador/inicial-recrutador.component';
 import { InicialAdministradorComponent } from '../../pages/inicial-administrador/inicial-administrador.component';
 import { VisualizarCurriculoComponent } from '../../pages/visualizar-curriculo/visualizar-curriculo.component';
-
+import { CurriculogeralComponent } from '../../pages/curriculogeral/curriculogeral.component';
 import { CadastrarCurriculoModule } from '../../pages/cadastrar-curriculo/cadastrar-curriculo.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
@@ -31,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InicialAdministradorComponent,
     InicialRecrutadorComponent,
     VisualizarCurriculoComponent,
+    CurriculogeralComponent,
   ],
 })
 export class AdminLayoutModule {}

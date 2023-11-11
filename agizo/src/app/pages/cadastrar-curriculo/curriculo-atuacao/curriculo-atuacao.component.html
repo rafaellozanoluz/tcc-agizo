@@ -1,66 +1,60 @@
 <div class="container">
-
-    <h3 class="title-etapa">Informações sobre o candidato</h3>  
-     
-    <form role="form">
-        <div class="form-group">
-            
-            <div class="title-question">
-                <i class="fa fa-calendar"></i>
-                <label class="question">Digite o seu nome completo para o curriculo</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" id="nome">     
-            </div>
-
-            <div class="title-question">
-                <i class="fa fa-calendar"></i>
-                <label class="question">Digite o seu e-mail para contato</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" id="email">     
-            </div>
-
-            <div class="title-question">
-                <i class="fa fa-calendar"></i>
-                <label class="question">Digite o seu telefone para contato</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" id="telefone">     
-            </div>
-
-            <div class="title-question">
-                <i class="fa fa-calendar"></i>
-                <label class="question">Informa a cidade que reside</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" id="cidade">     
-            </div>
-
-            <div class="title-question">
-                <i class="fa fa-calendar"></i>
-                <label class="question">Informe o estado em que reside</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" id="estado">     
-            </div>
-
-            <div class="title-question">
-                <i class="fa fa-briefcase"></i>
-                <label class="question">Em qual área você pretende atuar?</label>
-            </div>           
-            <div class="resposta">
-                <select class="form-control">
-                    <option value="1">Administração</option>
-                    <option value="2">Ciências Contábeis</option>
-                    <option value="3">Arquitetura e Urbanismo</option>
-                    <option value="4">Agronomia</option>
-                    <option value="5">Ciência e Tecnologia</option>
-                    <option value="6">Ciências Sociais</option>
-                    <option value="7">Eventos</option>
-                    <option value="8">Construção Civil</option>
-                  </select>                  
-            </div>
+    <h3 class="title-etapa">Informações sobre o candidato</h3>
+    <form [formGroup]="cabecalhoForm" role="form">
+      <div class="form-group">
+        <div class="title-question">
+          <i class="fa fa-calendar"></i>
+          <label class="question">Digite o seu nome completo para o currículo</label>
         </div>
+        <div class="resposta">
+          <input class="form-control" type="text" id="nome" formControlName="name" />
+        </div>
+  
+        <div class="title-question">
+          <i class="fa fa-calendar"></i>
+          <label class="question">Digite o seu e-mail para contato</label>
+        </div>
+        <div class="resposta">
+          <input class="form-control" type="text" id="email" formControlName="email" />
+        </div>
+  
+        <div class="title-question">
+          <i class="fa fa-calendar"></i>
+          <label class="question">Digite o seu telefone para contato</label>
+        </div>
+        <div class="resposta">
+          <input class="form-control" type="text" id="telefone" formControlName="telefone" />
+        </div>
+  
+        <div class="title-question">
+          <i class="fa fa-calendar"></i>
+          <label class="question">Informe a cidade que reside</label>
+        </div>
+        <div class="resposta">
+          <input class="form-control" type="text" id="cidade" formControlName="cidade" />
+        </div>
+  
+        <div class="title-question">
+          <i class="fa fa-calendar"></i>
+          <label class="question">Informe o estado em que reside</label>
+        </div>
+        <div class="resposta">
+          <input class="form-control" type="text" id="estado" formControlName="estado" />
+        </div>
+  
+        <div class="title-question">
+          <i class="fa fa-briefcase"></i>
+          <label class="question">Em qual área você pretende atuar?</label>
+        </div>
+        <div class="resposta">
+          <select class="form-control" formControlName="areaAtuacao">
+            <option value="" disabled selected>Selecione uma área de atuação</option>
+            <option *ngFor="let area of areasAtuacao" [value]="area.id">{{ area.descricao }}</option>
+          </select>
+        </div>
+        <br />
+        <button class="btn btn-primary" (click)="cadastrarCabecalho()">Salvar</button>
+      </div>
     </form>
-</div>
+  </div>
+  

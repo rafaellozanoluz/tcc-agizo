@@ -4,8 +4,8 @@ export class Experiencia {
     public local?: string,
     public cargo?: string,
     public descricao?: string,
-    public datainicio?: string,
-    public datafim?: string,
-    public idcurriculo?: string
+    public datainicio?: Date,
+    public datafim?: Date,
+    public idusuario?: string
   ) {}
 }

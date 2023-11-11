@@ -1,36 +1,39 @@
 <div class="container">
 
-    <h3 class="title-etapa">Informações sobre suas habilidades</h3>  
-     
+    <h3 class="title-etapa">Informações sobre suas habilidades</h3>
+
     <form role="form">
-        <div class="form-group">
-            
-            <div class="title-question">
-                <i class="fa fa-briefcase"></i>
-                <label class="question">Habilidade</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" placeholder="Habilidade">
-            </div>
-            
-            <div class="row">
-                <div class="col-4">
+        <div *ngFor="let habilidade of habilidades; let i = index" class="habilidade" [formGroup]="habilidadeForm" role="form">
+            <div class="habilidade-item">
+                <div class="form-group">
+
                     <div class="title-question">
-                        <i class="fa fa-arrow-up"></i>
-                        <label class="question">Nível</label>
-                    </div>           
+                        <i class="fa fa-briefcase"></i>
+                        <label class="question">Habilidade</label>
+                    </div>
                     <div class="resposta">
-                        <select class="form-control">
-                            <option value="1">Básico</option>
-                            <option value="2">Intermediário</option>
-                            <option value="3">Avançado</option>
-                          </select>  
+                        <input class="form-control" type="text" placeholder="Habilidade" formControlName="habilidade" [(ngModel)]="habilidade.habilidade">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="title-question">
+                                <i class="fa fa-arrow-up"></i>
+                                <label class="question">Nível</label>
+                            </div>
+                            <div class="resposta">
+                                <select class="form-control" formControlName="nivel">
+                                    <option value="" disabled selected>Selecione um nivel</option>
+                                    <option *ngFor="let nivel of nivel" [value]="nivel.nivel">{{ nivel.nivel }}</option>
+                                  </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <button type="button" class="btn btn-success">Adicionar</button>
-                </div>
+                <button type="button" class="btn btn-danger" (click)="removerHabilidade(i)">Remover</button>
             </div>
         </div>
+        <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarHabilidade()">Adicionar</button>
+        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarHabilidade()">Salvar</button>
     </form>
 </div>

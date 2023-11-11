@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { environment as env } from "src/environments/environment";
-import { MODEL } from "../shared";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment as env } from 'src/environments/environment.prod';
+import { MODEL } from '../shared';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ClientService {
-  private BASE_URL = env.BASE_URL + "users/";
+  private BASE_URL = env.BASE_URL + 'users/';
   private httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     }),
   };
 
@@ -23,10 +23,7 @@ export class ClientService {
   }
 
   getById(id: number): Observable<MODEL.Client> {
-    return this.httpClient.get<MODEL.Client>(
-      this.BASE_URL + id,
-      this.httpOptions
-    );
+    return this.httpClient.get<MODEL.Client>(this.BASE_URL + id, this.httpOptions);
   }
 
   create(client: MODEL.Client): Observable<MODEL.Client> {
@@ -46,9 +43,6 @@ export class ClientService {
   }
 
   delete(id: number): Observable<MODEL.Client> {
-    return this.httpClient.delete<MODEL.Client>(
-      this.BASE_URL + id,
-      this.httpOptions
-    );
+    return this.httpClient.delete<MODEL.Client>(this.BASE_URL + id, this.httpOptions);
   }
 }

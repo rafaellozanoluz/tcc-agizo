@@ -5,4 +5,4 @@ export { CabecalhoService } from './cabecalho.service';
 export { ExperienciaService } from './experiencia.service';
 export { FormacaoService } from './formacao.service';
 export { HabilidadesService } from './habilidades.service';
-export { CurriculoService } from './curriculo.service';
+export { ResumoService } from './resumo.service';

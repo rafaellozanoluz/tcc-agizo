@@ -1,75 +1,75 @@
 <div class="container">
-    <h3 class="title-etapa">Informações sobre sua experiência</h3>
-    <form>
-      <div *ngFor="let experiencia of experiencias; let i = index" class="experiencia">
-        <div class="experiencia-item">
-          <div class="form-group">
-            <div class="title-question">
-              <i class="fa fa-briefcase"></i>
-              <label class="question">Cargo</label>
-            </div>
-            <div class="resposta">
-              <input class="form-control" type="text" placeholder="Nome do cargo" [(ngModel)]="experiencia.cargo" name="cargo">
-            </div>
+  <h3 class="title-etapa">Informações sobre sua experiência</h3>
+  <form>
+    <div *ngFor="let experiencia of experiencias; let i = index" class="experiencia" [formGroup]="experienciaForm" role="form">
+      <div class="experiencia-item">
+        <div class="form-group">
+          <div class="title-question">
+            <i class="fa fa-briefcase"></i>
+            <label class="question">Cargo</label>
           </div>
-
-          <div class="form-group">
-            <div class="title-question">
-                <i class="fa fa-briefcase"></i>
-                <label class="question">Empresa</label>
-            </div>           
-            <div class="resposta">
-                <input class="form-control" type="text" placeholder="Empresa que trabalhou" [(ngModel)]="experiencia.local" name="cargo">
-            </div>
+          <div class="resposta">
+            <input class="form-control" type="text" placeholder="Nome do cargo" formControlName="cargo" [(ngModel)]="experiencia.cargo" name="cargo">
           </div>
-
-          <div class="form-group">
-            <div class="title-question">
-                <i class="fa fa-align-justify"></i>
-                <label class="question">Descrição da atividade</label>
-            </div>           
-            <div class="resposta">
-                <textarea class="form-control is-invalid" id="validationTextarea" [(ngModel)]="experiencia.descricao" name="descricao" placeholder="Conte em poucas palavras o que fazia" required></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="row">
-                <div class="col-4">
-                    <div class="title-question">
-                        <i class="fa fa-calendar"></i>
-                        <label class="question">Data de inicio</label>
-                    </div>           
-                    <div class="resposta">
-                        <input
-                            class="form-control"
-                            placeholder="Data Inicio"
-                            type="date"
-                            [(ngModel)]="experiencia.dataInicio" name="dataInicio"
-                        />
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="title-question">
-                        <i class="fa fa-calendar"></i>
-                        <label class="question">Data de fim</label>
-                    </div>           
-                    <div class="resposta">
-                        <input
-                            class="form-control"
-                            placeholder="Data Fim"
-                            type="date"
-                            [(ngModel)]="experiencia.dataFim" name="dataFim"
-                        />
-                    </div>
-                </div>
-              </div>
-          </div>
-          <button type="button" class="btn btn-danger" (click)="removerExperiencia(i)">Remover</button>
         </div>
+
+        <div class="form-group">
+          <div class="title-question">
+              <i class="fa fa-briefcase"></i>
+              <label class="question">Empresa</label>
+          </div>           
+          <div class="resposta">
+              <input class="form-control" type="text" placeholder="Empresa que trabalhou" formControlName="local" [(ngModel)]="experiencia.local" name="local">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="title-question">
+              <i class="fa fa-align-justify"></i>
+              <label class="question">Descrição da atividade</label>
+          </div>           
+          <div class="resposta">
+              <textarea class="form-control is-invalid" id="validationTextarea" formControlName="descricao" [(ngModel)]="experiencia.descricao" name="descricao" placeholder="Conte em poucas palavras o que fazia" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+              <div class="col-4">
+                  <div class="title-question">
+                      <i class="fa fa-calendar"></i>
+                      <label class="question">Data de inicio</label>
+                  </div>           
+                  <div class="resposta">
+                      <input
+                          class="form-control"
+                          placeholder="Data Inicio"
+                          type="date"
+                          [(ngModel)]="experiencia.datainicio" name="datainicio" formControlName="datainicio"
+                      />
+                  </div>
+              </div>
+
+              <div class="col-4">
+                  <div class="title-question">
+                      <i class="fa fa-calendar"></i>
+                      <label class="question">Data de fim</label>
+                  </div>           
+                  <div class="resposta">
+                      <input
+                          class="form-control"
+                          placeholder="Data Fim"
+                          type="date"
+                          [(ngModel)]="experiencia.datafim" name="datafim" formControlName="datafim"
+                      />
+                  </div>
+              </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removerExperiencia(i)">Remover</button>
       </div>
-    <button type="button" class="btn btn-success" (click)="adicionarExperiencia()">Adicionar</button>
-    </form>
-  </div>
-  
+    </div>
+  <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarExperiencia()">Adicionar</button>
+  <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarExperiencia()">Salvar</button>
+  </form>
+</div>

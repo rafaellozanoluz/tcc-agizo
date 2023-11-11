@@ -56,15 +56,15 @@
                 </div>
                 <div class="about">
                     <h2 class="title2">Experiência</h2>
-                    <div class="box" *ngFor="let experiencia of experiencia">
+                    <div class="box" *ngFor="let curriculo of experiencias">
                         <div class="years_experience">
-                            <h5>{{ experiencia.datainicio }} até {{ experiencia.datafim }}</h5>
+                            <h5>{{ curriculo.datainicio }} até {{ curriculo.datafim }}</h5>
                         </div>
                         <div class="text">
-                            <h4>{{ experiencia.local }}</h4>
-                            <h4>{{ experiencia.cargo }}</h4>
+                            <h4>{{ curriculo.local }}</h4>
+                            <h4>{{ curriculo.cargo }}</h4>
                             <p>
-                                {{ experiencia.descricao }}
+                                {{ curriculo.descricao }}
                             </p>
                         </div>                        
                     </div>
@@ -84,7 +84,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>    
 
     <div style="text-align: center;" class="botoes">

@@ -7,6 +7,6 @@ export class Cabecalho {
     public cidade?: string,
     public estado?: string,
     public cargo?: string,
-    public idcurriculo?: string
+    public idusuario?: string
   ) {}
 }

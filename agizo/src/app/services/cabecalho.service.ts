@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment as env } from 'src/environments/environment';
-import { MODEL } from '../shared';
+import { Cabecalho } from '../shared/models/cabecalho.model';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CabecalhoService {
-  private BASE_URL = env.BASE_URL + 'cabecalho/';
+  private BASE_URL = environment.BASE_URL + 'cabecalho';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -17,26 +17,35 @@ export class CabecalhoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // Método para criar um novo registro de Cabecalho
-  criarCabecalho(cabecalho: MODEL.Cabecalho): Observable<MODEL.Cabecalho> {
-    return this.httpClient.post<MODEL.Cabecalho>(`${this.BASE_URL}/cabecalho`, cabecalho);
+  criarCabecalho(cabecalho: Cabecalho): Observable<Cabecalho> {
+    return this.httpClient.post<Cabecalho>(this.BASE_URL, cabecalho, this.httpOptions);
   }
 
-  // Método para obter todos os registros de Cabecalho
-  obterCabecalho(): Observable<MODEL.Cabecalho[]> {
-    return this.httpClient.get<MODEL.Cabecalho[]>(`${this.BASE_URL}/cabecalho`);
+  obterTodosCabecalhos(): Observable<Cabecalho[]> {
+    return this.httpClient.get<Cabecalho[]>(this.BASE_URL);
   }
 
-  // Método para atualizar um registro de Cabecalho
-  atualizarCabecalho(cabecalho: MODEL.Cabecalho): Observable<MODEL.Cabecalho> {
-    return this.httpClient.put<MODEL.Cabecalho>(
-      `${this.BASE_URL}/cabecalho/${cabecalho.id}`,
-      cabecalho
+  obterCidades(): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${this.BASE_URL}/cidades`);
+  }
+
+  obterEstados(): Observable<string[]> {
+    return this.httpClient.get<string[]>(`${this.BASE_URL}/estados`);
+  }
+
+  obterCabecalhoPorUsuario(idUsuario: string): Observable<Cabecalho> {
+    return this.httpClient.get<Cabecalho>(`${this.BASE_URL}/${idUsuario}`);
+  }
+
+  atualizarCabecalho(cabecalho: Cabecalho): Observable<Cabecalho> {
+    return this.httpClient.put<Cabecalho>(
+      `${this.BASE_URL}/${cabecalho.id}`,
+      cabecalho,
+      this.httpOptions
     );
   }
 
-  // Método para excluir um registro de Cabecalho
   excluirCabecalho(id: string): Observable<void> {
-    return this.httpClient.delete<void>(`${this.BASE_URL}/cabecalho/${id}`);
+    return this.httpClient.delete<void>(`${this.BASE_URL}/${id}`);
   }
 }

@@ -1,15 +1,18 @@
 <div class="container">
-
     <h3 class="title-etapa">Escreva um resumo sobre suas experiências e objetivos profissionais</h3>
-    
     <form role="form">
-        <div class="form-group">
-                  
-            <div class="resposta">
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Insira o resumo aqui!" required></textarea>
-            </div>
+      <div class="form-group">
+        <div class="resposta">
+          <textarea
+            class="form-control is-invalid"
+            id="validationTextarea"
+            placeholder="Insira o resumo aqui!"
+            required
+            [(ngModel)]="resumoTexto"
+          ></textarea>
         </div>
+      </div>
+      <button class="btn btn-primary" (click)="salvarResumo()">Salvar Resumo</button>
     </form>
-
-
-</div>
+  </div>
+  

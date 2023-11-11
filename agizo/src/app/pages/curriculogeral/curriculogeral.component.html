@@ -1,0 +1,60 @@
+<br><br><br><br><br>
+
+<div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <label for="cargo">Cargo:</label><br>
+        <select id="cargo" class="form-select custom-select" [(ngModel)]="selectedCargo">
+          <option value="" disabled selected>Selecione um cargo</option>
+          <option *ngFor="let cargo of cargos" [value]="cargo.descricao">{{ cargo.descricao }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="cidade">Cidade:</label><br>
+        <select id="cidade" class="form-select custom-select" [(ngModel)]="selectedCidade">
+          <option value="" disabled selected>Selecione uma cidade</option>
+          <option *ngFor="let cidade of cidades" [value]="cidade">{{ cidade }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="estado">Estado:</label><br>
+        <select id="estado" class="form-select custom-select" [(ngModel)]="selectedEstado">
+          <option value="" disabled selected>Selecione um estado</option>
+          <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+        </select>               
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary custom-btn" (click)="searchCandidates()">Filtrar</button>
+        <br><br>
+        <button class="btn btn-secondary custom-btn" (click)="clearSelections()">Limpar Filtro</button>
+    </div>
+  </div>
+  <br>
+  <div class="container mt-4">
+    <p *ngIf="noCandidatesFound" class="text-danger">Nenhum candidato encontrado.</p>
+    <table *ngIf="candidates.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Cargo</th>
+          <th>Cidade</th>
+          <th>Estado</th>
+          <th>Ver Currículo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let candidate of candidates">
+          <td>{{ candidate.nome }}</td>
+          <td>{{ candidate.email }}</td>
+          <td>{{ candidate.telefone }}</td>
+          <td>{{ candidate.cargo }}</td>
+          <td>{{ candidate.cidade }}</td>
+          <td>{{ candidate.estado }}</td>
+          <td><button class="btn btn-secondary" (click)="viewResume(candidate)">Ver Currículo</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

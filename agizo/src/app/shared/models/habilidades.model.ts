@@ -3,6 +3,6 @@ export class Habilidades {
     public id?: string,
     public descricao?: string,
     public nivel?: string,
-    public idcurriculo?: string
+    public idusuario?: string
   ) {}
 }
