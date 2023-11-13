@@ -23,6 +23,7 @@ export class VisualizarCurriculoComponent implements OnInit {
   estado: string = '';
   resumo: string = '';
 
+
   constructor(private curriculoService: CurriculoService) {}
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class VisualizarCurriculoComponent implements OnInit {
         this.estado = curriculo[0].cabecalho.estado;
       }
     });
+
   }
 
   public convertToPDF() {
@@ -66,4 +68,5 @@ export class VisualizarCurriculoComponent implements OnInit {
       pdf.save('Currículos AGIZO.pdf');
     });
   }
+
 }
