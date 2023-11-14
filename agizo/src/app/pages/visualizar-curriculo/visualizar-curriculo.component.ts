@@ -3,12 +3,27 @@ import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import { CurriculoService } from '../../services/curriculo.service';
 
+interface Opcao {
+  language: string;
+  name: string;
+}
+
+
+
 @Component({
   selector: 'app-visualizar-curriculo',
   templateUrl: './visualizar-curriculo.component.html',
   styleUrls: ['./visualizar-curriculo.component.scss'],
 })
+
+
+
 export class VisualizarCurriculoComponent implements OnInit {
+
+  dadosJson: Opcao[] = [];
+  linguagemFromSelecionada: string = '';
+  linguagemToSelecionada: string = '';
+
   title = 'html-to-pdf-angular-application';
   habilidades: any[] = [];
   formacao: any[] = [];
@@ -22,6 +37,8 @@ export class VisualizarCurriculoComponent implements OnInit {
   cidade: string = '';
   estado: string = '';
   resumo: string = '';
+
+
 
 
   constructor(private curriculoService: CurriculoService) {}
@@ -43,6 +60,9 @@ export class VisualizarCurriculoComponent implements OnInit {
         this.estado = curriculo[0].cabecalho.estado;
       }
     });
+
+    this.popularSelectFromComJson("selectFrom");
+    this.popularSelectToComJson("selectTo");
 
   }
 
@@ -69,4 +89,131 @@ export class VisualizarCurriculoComponent implements OnInit {
     });
   }
 
+  popularSelectFromComJson(nomeSelect: string) {
+
+    this.dadosJson  = [
+      { language: "null", name: "Selecione" },
+      { language: "pt-BR", name: "Português" },
+      { language: "en-GB", name: "Inglês" },
+      { language: "es-ES", name: "Espanhol" },
+      { language: "it-IT", name: "Italiano" },
+      { language: "ja-JP", name: "Japonês" },
+      { language: "fr-FR", name: "Francês" },
+      // ... outras línguas
+    ];
+
+    const selectElement = document.getElementById(nomeSelect) as HTMLSelectElement;
+
+    if (selectElement) {
+      selectElement.innerHTML = "";
+
+      this.dadosJson.forEach((lingua) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = lingua.language;
+        optionElement.text = lingua.name;
+        selectElement.add(optionElement);
+      });
+
+      selectElement.addEventListener('change', () => {
+        const indiceSelecionado = selectElement.selectedIndex;
+
+        if (indiceSelecionado !== -1) {
+          this.linguagemFromSelecionada = this.dadosJson[indiceSelecionado].language;
+          console.log('Linguagem selecionada FROM:', this.linguagemFromSelecionada);
+        }
+      });
+    } else {
+      console.error(`Elemento select com ID ${nomeSelect} não encontrado.`);
+    }
+  }
+
+  popularSelectToComJson(nomeSelect: string) {
+
+    this.dadosJson  = [
+      { language: "null", name: "Selecione" },
+      { language: "pt-BR", name: "Português" },
+      { language: "en-GB", name: "Inglês" },
+      { language: "es-ES", name: "Espanhol" },
+      { language: "it-IT", name: "Italiano" },
+      { language: "ja-JP", name: "Japonês" },
+      { language: "fr-FR", name: "Francês" },
+      // ... outras línguas
+    ];
+
+    const selectElement = document.getElementById(nomeSelect) as HTMLSelectElement;
+
+    if (selectElement) {
+      selectElement.innerHTML = "";
+
+      this.dadosJson.forEach((lingua) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = lingua.language;
+        optionElement.text = lingua.name;
+        selectElement.add(optionElement);
+      });
+
+      selectElement.addEventListener('change', () => {
+        const indiceSelecionado = selectElement.selectedIndex;
+
+        if (indiceSelecionado !== -1) {
+          this.linguagemToSelecionada = this.dadosJson[indiceSelecionado].language;
+          console.log('Linguagem selecionada TO:', this.linguagemToSelecionada);
+          console.error(`Linguagem:langpair=${this.linguagemFromSelecionada}|${this.linguagemToSelecionada}`)
+        }
+      });
+    } else {
+      console.error(`Elemento select com ID ${nomeSelect} não encontrado.`);
+    }
+  }
+
+
+
+   async loadTranslation(traduzir: string | any) {
+      
+    try {
+      const response = await fetch(`https://api.mymemory.translated.net/get?q=${traduzir}&langpair=${this.linguagemFromSelecionada}|${this.linguagemToSelecionada}`);
+      const data = await response.json();
+      const traducao = data.responseData.translatedText;
+      console.log(traducao);
+      return traducao;
+    } catch (erro) {
+      console.error('Erro ao obter tradução:', erro);
+      throw erro; // Rejeita a Promise com o erro
+    }
+    }
+
+
+  async Translation() {
+    try {
+    this.cargo = await this.loadTranslation(this.cargo);
+    this.resumo = await this.loadTranslation(this.resumo);
+    
+    for (let i = 0; i < this.habilidades.length; i++) {
+      const habilidade = this.habilidades[i];
+      habilidade.descricao = await this.loadTranslation(habilidade.descricao);
+      habilidade.nivel = await this.loadTranslation(habilidade.nivel);
+    }
+
+    for (let i = 0; i < this.formacao.length; i++) {
+      const formacao = this.formacao[i];
+      formacao.curso = await this.loadTranslation(formacao.curso);
+    }
+
+    for (let i = 0; i < this.experiencia.length; i++) {
+      const experiencia = this.experiencia[i];
+      experiencia.cargo = await this.loadTranslation(experiencia.cargo);
+      experiencia.descricao = await this.loadTranslation(experiencia.descricao);
+    }
+
+    for (let i = 0; i < this.adicionais.length; i++) {
+      const adicionais = this.adicionais[i];
+      adicionais.titulo = await this.loadTranslation(adicionais.titulo);
+      adicionais.descricao = await this.loadTranslation(adicionais.descricao);
+    }
+    
+    } catch (erro){
+      console.error(erro);
+    }
+  }
 }
+

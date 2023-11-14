@@ -91,15 +91,22 @@
 <div style="text-align: center;" class="botoes">
     <div>
         <input type="button" style="background-color: rgb(0, 255, 170);" class="btn btn-print" value="Gerar PDF" (click)="convertToPDF()">
+        <input type="button" style="background-color: rgb(88, 161, 255);" class="btn btn-print" value="Traduzir Currículo" (click)="Translation()">
     </div>
     <div class="tradutor">
         <div class="divSelects">
-            <select class="selectFrom">
-                <option value="IdiomaDe">1</option>
-            </select>
-            <select class="selectTo">
-                <option value="IdiomaPara">1</option>
-            </select>
-          </div>
+            <div class="selectUnique">
+                <label for="selectFrom">Selecione a língua de origem:</label>
+                <select id="selectFrom"  class="form-select">
+                    <option id="optionFrom" selected>Selecione uma opção</option>
+                </select>
+            </div>
+            <div class="selectUnique">
+                <label for="selectTo">Selecione a língua para tradução:</label>
+                <select id="selectTo"  class="form-select">
+                    <option id="optionTo" selected>Selecione uma opção</option>
+                </select>
+            </div>
+        </div>
     </div>          
 </div>
