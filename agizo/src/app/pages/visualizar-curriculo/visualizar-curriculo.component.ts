@@ -38,6 +38,13 @@ export class VisualizarCurriculoComponent implements OnInit {
   estado: string = '';
   resumo: string = '';
 
+  contato: string = 'Informações de Contato';
+  habilidade: string = 'Habilidades';
+  educacao: string = 'Educação';
+  perfil: string = 'Perfil';
+  experiencias: string = 'Experiências';
+  infAdicionais: string = 'Informações Adicionais';
+
 
 
 
@@ -185,9 +192,20 @@ export class VisualizarCurriculoComponent implements OnInit {
 
   async Translation() {
     try {
+
+     //Traduz as labels 
+    this.contato = await this.loadTranslation(this.contato);
+    this.habilidade = await this.loadTranslation(this.habilidade);
+    this.educacao = await this.loadTranslation(this.educacao);
+    this.perfil = await this.loadTranslation(this.perfil);
+    this.experiencias = await this.loadTranslation(this.experiencias);
+    this.infAdicionais = await this.loadTranslation(this.infAdicionais);
+
+    //Traduz as informações de cargo e resumo
     this.cargo = await this.loadTranslation(this.cargo);
     this.resumo = await this.loadTranslation(this.resumo);
     
+    //Traduz todos as informações dos arrays percorrendo eles
     for (let i = 0; i < this.habilidades.length; i++) {
       const habilidade = this.habilidades[i];
       habilidade.descricao = await this.loadTranslation(habilidade.descricao);
