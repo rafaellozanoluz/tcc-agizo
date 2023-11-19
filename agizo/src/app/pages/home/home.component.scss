@@ -1,0 +1,36 @@
+.image {
+    width: 500px;
+    border-radius: 20px;
+}
+
+.box {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-box, .right-box {
+    flex: 1;
+    padding: 10px;
+}
+
+.right-box {
+    width: 500px;
+    margin-left: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+.chamada {
+    margin-top: 70px;
+    color: #0991C8;
+} 
+
+.sub-chamada,#botao-right {
+    margin-top: 20px;
+}
+
+.sub-chamada {
+    color: #838383;
+    font-weight: bold;
+}

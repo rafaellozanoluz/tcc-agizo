@@ -1,1 +1,65 @@
-<p>home works!</p>
+<nav class="navbar navbar-expand-lg bg-light">
+    <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/home']">
+      <img class="image-navbar" src="../../../assets/img/logo_agizo.png"/>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/login']">Entre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/register']">Cadastre-se</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+    <div class="container">
+        <div class="box">
+            <div class="left-box">
+                <div class="slides">
+                    <div [@fade]="slideAtual" *ngIf="slideAtual === 1" >
+                        <img class="image" src="../../../assets/img/banner-home/foto_1.jpg"/>
+                    </div>
+                    <div [@fade]="slideAtual" *ngIf="slideAtual === 2" >
+                        <img class="image" src="../../../assets/img/banner-home/foto_2.jpg"/>                    
+                    </div>
+                    <div [@fade]="slideAtual" *ngIf="slideAtual === 3" >
+                        <img class="image" src="../../../assets/img/banner-home/foto_3.jpg"/>
+                    </div>
+                    <div [@fade]="slideAtual" *ngIf="slideAtual === 4" >
+                        <img class="image" src="../../../assets/img/banner-home/foto_4.jpg"/>
+                    </div>
+                    <div [@fade]="slideAtual" *ngIf="slideAtual === 5" >
+                        <img class="image" src="../../../assets/img/banner-home/foto_5.jpg"/>
+                    </div>
+                </div>
+            </div>
+            <div class="right-box">
+                <h1 class="chamada">TRANSFORME SEU CURRÍCULO</h1>
+                <h3 class="sub-chamada">Crie, traduza, publique em um banco de currículos!</h3>
+                <button id="botao-right" class="btn btn-info">Criar currículo</button>
+            </div>
+        </div>
+        <hr/>
+        <div class="box">
+            <div class="left-box">
+                <h1 class="chamada">OS RECRUTADORES ESTÃO ESPERANDO O SEU CV</h1>
+                <h3 class="sub-chamada">Converse via chat com um recrutador e encontre a vaga perfeita!</h3>
+            </div>
+            <div class="right-box">
+                <img class="image" src="../../../assets/img/banner-home/foto_6.jpg"/>
+            </div>
+        </div>
+    </div>
+
+
+    <app-footer></app-footer>
+  
