@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'home', // Define a rota para o componente Home
     component: HomeComponent,
+  },
+  {
+    path: 'chat', // Define a rota para o componente Home
+    component: ChatComponent,
   },
   {
     path: '',
