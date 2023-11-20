@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChatService } from 'src/app/services/chat.service';
 
@@ -6,7 +6,8 @@ import { ChatService } from 'src/app/services/chat.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ChatComponent implements OnInit, AfterViewInit {
 
