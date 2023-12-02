@@ -1,5 +1,5 @@
 <br><br>
-<div class="container">
+<div class="container" [style.cursor]="isLoading ? 'wait' : 'default'">
     <div class="pdfContainer" id="pdfContainer" value="Currículos AGIZO.pdf">
         <div class="left_Side">
             <div class="profileText">
@@ -90,8 +90,8 @@
 
 <div style="text-align: center;" class="botoes">
     <div>
-        <input type="button" style="background-color: rgb(0, 255, 170);" class="btn btn-print" value="Gerar PDF" (click)="convertToPDF()">
-        <input type="button" style="background-color: rgb(88, 161, 255);" class="btn btn-print" value="Traduzir Currículo" (click)="Translation()">
+        <input type="button" style="background-color: rgb(0, 255, 170);" class="btn btn-print" value="Gerar PDF" [style.cursor]="isLoading ? 'wait' : 'default'" (click)="convertToPDF()">
+        <input type="button" style="background-color: rgb(88, 161, 255);" class="btn btn-print" value="Traduzir Currículo" [style.cursor]="isLoading ? 'wait' : 'default'" (click)="Translation()">
     </div>
     <div class="tradutor">
         <div class="divSelects">

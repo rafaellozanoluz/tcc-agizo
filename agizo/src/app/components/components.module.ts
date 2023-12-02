@@ -10,10 +10,11 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 
 import { ChatComponent } from './chat/chat.component';
+import { LoadingDialogComponent } from './loading-dialog/loading-dialog.component';
 
 @NgModule({
   imports: [HttpClientModule, CommonModule, RouterModule, NgbModule, FormsModule],
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, ChatComponent],
+  declarations: [FooterComponent, NavbarComponent, SidebarComponent, ChatComponent, LoadingDialogComponent],
   exports: [FooterComponent, NavbarComponent, SidebarComponent, ChatComponent],
 })
 export class ComponentsModule {}
