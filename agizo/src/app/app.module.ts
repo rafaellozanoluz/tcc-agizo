@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CurriculoService } from './services';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
@@ -27,7 +27,7 @@ import { ComponentsModule } from './components/components.module';
     
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, HomeComponent],
-  providers: [],
+  providers: [ CurriculoService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

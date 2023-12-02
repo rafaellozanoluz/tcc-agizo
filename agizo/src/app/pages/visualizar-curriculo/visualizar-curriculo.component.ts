@@ -1,8 +1,6 @@
 import { Component, OnInit, Injectable, ElementRef, ViewChild } from '@angular/core';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoadingDialogComponent } from 'src/app/components/loading-dialog/loading-dialog.component';
 import { CurriculoService } from '../../services/curriculo.service';
 
 interface Opcao {
@@ -21,8 +19,6 @@ interface Opcao {
 
 
 export class VisualizarCurriculoComponent implements OnInit {
-
-  dialogRef: MatDialogRef<any> | null;
 
   isLoading: boolean = false;
 
@@ -54,12 +50,11 @@ export class VisualizarCurriculoComponent implements OnInit {
 
 
 
-  constructor(private curriculoService: CurriculoService) {
-    
-  }
+  constructor(private curriculoService: CurriculoService) {  }
 
   
   ngOnInit(): void {
+
     this.curriculoService.obterCurriculo().subscribe((curriculo) => {
       if (curriculo && curriculo.length > 0) {
         this.habilidades = curriculo[0].habilidades;
@@ -202,10 +197,9 @@ export class VisualizarCurriculoComponent implements OnInit {
   async Translation() {
     
     this.isLoading = true;
-    
-    
 
     try {
+  
 
      //Traduz as labels 
     this.contato = await this.loadTranslation(this.contato);
@@ -247,10 +241,8 @@ export class VisualizarCurriculoComponent implements OnInit {
       console.error(erro);
     }
     this.isLoading = false;
-
-    
-
   }
+
 
 
 }
