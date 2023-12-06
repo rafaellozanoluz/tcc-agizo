@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment as env } from 'src/environments/environment.prod';
+import { environment as env } from 'src/environments/environment';
 import { MODEL } from '../shared';
 import { tap } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
@@ -38,7 +38,7 @@ export class AuthService {
   login(login: MODEL.Login): Observable<MODEL.User | null> {
     const params = new HttpParams().set('email', login.email).set('password', login.password);
     return this.httpClient
-      .get<MODEL.User | null>(this.BASE_URL + 'login', {
+      .get<MODEL.User | null>(this.BASE_URL, {
         ...this.httpOptions,
         params,
       })
