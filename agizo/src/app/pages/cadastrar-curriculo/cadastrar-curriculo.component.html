@@ -1,7 +1,15 @@
 <br><br>
 <div class="container">
+  <h1 class="title-page">Informações do seu currículo:</h1>
 
-    <h1 class="title-page">Cadastre as informações do seu currículo!</h1>
+    <div class="timeline">
+      <div [ngClass]="{'event': true, 'user-info': true, 'highlighted': slideAtual === 1}" (click)="alterarSlide(1)">1 - Informações de usuário</div>
+      <div [ngClass]="{'event': true, 'summary': true, 'highlighted': slideAtual === 2}" (click)="alterarSlide(2)">2 - Resumo</div>
+      <div [ngClass]="{'event': true, 'experience': true, 'highlighted': slideAtual === 3}" (click)="alterarSlide(3)">3 - Experiência</div>
+      <div [ngClass]="{'event': true, 'education': true, 'highlighted': slideAtual === 4}" (click)="alterarSlide(4)">4 - Formação</div>
+      <div [ngClass]="{'event': true, 'skills': true, 'highlighted': slideAtual === 5}" (click)="alterarSlide(5)">5 - Habilidades</div>
+      <div [ngClass]="{'event': true, 'additional-info': true, 'highlighted': slideAtual === 6}" (click)="alterarSlide(6)">6 - Informações adicionais</div>
+    </div>
 
     <div class="slider">
         <div class="slides" class="component">

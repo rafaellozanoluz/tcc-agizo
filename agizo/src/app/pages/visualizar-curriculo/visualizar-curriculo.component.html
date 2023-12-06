@@ -1,4 +1,33 @@
-  <br><br>
+  <br><br><br><br>
+  <div style="text-align: center;" class="botoes"> 
+    <h1 class="title-etapa">Salve seu currículo em PDF e traduza para vagas no exterior</h1>  
+    <br>
+    <div class="tradutor">
+        <div class="divSelects">
+            <div class="selectUnique">
+                <label for="selectFrom">Selecione a língua de origem:</label>
+                <br>
+                <select id="selectFrom"  class="form-control">
+                    <option id="optionFrom" selected>Selecione uma opção</option>
+                </select>
+            </div>
+            <br>
+            <div class="selectUnique">
+                <label for="selectTo">Selecione a língua para tradução:</label>
+                <br>
+                <select id="selectTo"  class="form-control">
+                    <option id="optionTo" selected>Selecione uma opção</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div>
+            <input type="button" style="background-color: rgb(88, 161, 255);" class="btn btn-print" value="Traduzir Currículo" (click)="Translation()">
+            <input type="button" style="background-color: rgb(0, 255, 170);" class="btn" value="Salvar PDF" (click)="convertToPDF()">
+        </div>     
+    </div>   
+</div> 
+
   <div class="container">
         <div class="pdfContainer" id="pdfContainer">
             <div class="left_Side">
@@ -9,7 +38,7 @@
                     <h2>{{ nome }}<br><span>{{ cargo }}</span></h2>
                 </div>
                 <div class="contato">
-                    <h3 class="title">Informações de Contato</h3>
+                    <h3 class="title">{{ contato }}</h3>
                     <ul>
                         <li>
                             <span class="icon"></span>
@@ -27,7 +56,7 @@
                 </div>
                 
                 <div class="habilidades">
-                    <h3 class="title">Habilidades</h3>
+                    <h3 class="title">{{ habilidade }}</h3>
                     <div *ngFor="let habilidade of habilidades">
                         <div class="box">
                             <h4>{{ habilidade.descricao }}</h4>
@@ -37,28 +66,28 @@
                 </div>
 
                 <div class="educacao">
-                    <h3 class="title">Educação</h3>
+                    <h3 class="title">{{ educacao }}</h3>
                     <ul *ngFor="let formacao of formacao">
                         <li>
                             <h4>{{ formacao.curso }}</h4>
                             <h4>{{ formacao.local }}</h4>
-                            <h5>{{ formacao.datainicio }} até {{ formacao.datafim }}</h5>
+                            <h5>{{ formacao.datainicio }} {{ate}} {{ formacao.datafim }}</h5>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="right_Side">
                 <div class="about">
-                    <h2 class="title2">Perfil</h2>
+                    <h2 class="title2">{{ perfil }}</h2>
                     <p>
                         {{ resumo }}
                     </p>
                 </div>
                 <div class="about">
-                    <h2 class="title2">Experiência</h2>
+                    <h2 class="title2">{{ experiencia }}</h2>
                     <div class="box" *ngFor="let curriculo of experiencias">
                         <div class="years_experience">
-                            <h5>{{ curriculo.datainicio }} até {{ curriculo.datafim }}</h5>
+                            <h5>{{ curriculo.datainicio }} {{ate}} {{ curriculo.datafim }}</h5>
                         </div>
                         <div class="text">
                             <h4>{{ curriculo.local }}</h4>
@@ -70,7 +99,7 @@
                     </div>
                 </div>
                 <div class="about">
-                    <h2 class="title2">Informações Adicionais</h2>
+                    <h2 class="title2">{{ infAdicionais }}</h2>
                     <div class="box" *ngFor="let adicionais of adicionais">
                         <div class="years_experience">
                             <h5>{{ adicionais.data }}</h5>
@@ -84,11 +113,8 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div> 
+              
     </div>    
 
-    <div style="text-align: center;" class="botoes">
-        <div>
-            <input type="button" style="background-color: rgb(0, 255, 170);" class="btn" value="Gerar PDF" (click)="convertToPDF()">
-        </div>       
-    </div>
+    

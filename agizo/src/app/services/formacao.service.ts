@@ -27,8 +27,8 @@ export class FormacaoService {
     return this.httpClient.get<MODEL.Formacao[]>(`${this.BASE_URL}`);
   }
 
-  obterFormacaoPorUsuario(idUsuario: string): Observable<MODEL.Formacao> {
-    return this.httpClient.get<MODEL.Formacao>(`${this.BASE_URL}/${idUsuario}`);
+  obterFormacaoPorUsuario(idUsuario: string): Observable<MODEL.Formacao[]> {
+    return this.httpClient.get<MODEL.Formacao[]>(`${this.BASE_URL}/${idUsuario}`);
   }
 
   obterFormacaoUnica(): Observable<string[]> {

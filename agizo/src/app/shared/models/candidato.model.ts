@@ -5,4 +5,5 @@ export class Candidato {
   cargo: string;
   cidade: string;
   estado: string;
+  idusuario: string;
 }

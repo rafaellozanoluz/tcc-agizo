@@ -1,0 +1,43 @@
+.timeline {
+  display: flex;
+}
+
+.event {
+  flex: 1; /* Ocupa a largura igualmente */
+  position: relative;
+  padding: 10px;
+  border-top: 20px solid transparent; /* Define o triângulo */
+  border-bottom: 20px solid transparent; /* Define o triângulo */
+  cursor: pointer;
+}
+
+.event:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -20px; /* Ajusta a posição do triângulo */
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent; /* Define a borda triangular */
+  border-bottom: 20px solid transparent; /* Define a borda triangular */
+  border-right: 20px solid lightgrey; /* Cor de fundo do triângulo */
+}
+/* Estilo do último evento (sem triângulo à direita) */
+.event:last-child:before {
+  display: none;
+}
+
+/* Destacar um evento com cor diferente */
+.highlighted {
+  background-color: lightblue; /* Cor de fundo azul claro */
+}
+
+/* Alterar cor do triângulo para o evento destacado */
+.highlighted:before {
+  border-right-color: lightblue; /* Altera a cor do triângulo */
+}
+
+/* Estilizando a interação ao passar o mouse */
+.event:hover {
+  opacity: 0.8; /* Reduz a opacidade ao passar o mouse */
+}

@@ -1,9 +1,9 @@
 <div class="container">
 
     <h3 class="title-etapa">Informações sobre suas habilidades</h3>
-
+    <p>Total de habilidades: {{ habilidades.length }}</p>
     <form role="form">
-        <div *ngFor="let habilidade of habilidades; let i = index" class="habilidade" [formGroup]="habilidadeForm" role="form">
+        <div *ngFor="let habilidade of habilidades; let i = index" class="habilidade" role="form">
             <div class="habilidade-item">
                 <div class="form-group">
 
@@ -12,7 +12,10 @@
                         <label class="question">Habilidade</label>
                     </div>
                     <div class="resposta">
-                        <input class="form-control" type="text" placeholder="Habilidade" formControlName="habilidade" [(ngModel)]="habilidade.habilidade">
+                        <input class="form-control" type="text" placeholder="Habilidade" (input)="habilidades[i].descricao = $event.target.value" [value]="habilidade.descricao" formControlName="descricao_{{i}}" name="descricao_{{i}}" required>
+                    </div>
+                    <div *ngIf="habilidade.descricao === ''" style="color: red">
+                        O campo Descrição é obrigatório.
                     </div>
 
                     <div class="row">
@@ -22,10 +25,13 @@
                                 <label class="question">Nível</label>
                             </div>
                             <div class="resposta">
-                                <select class="form-control" formControlName="nivel">
+                                <select class="form-control" (input)="habilidades[i].nivel = $event.target.value" [value]="nivel.nivel" formControlName="nivel_{{i}}" name="nivel_{{i}}" required>
                                     <option value="" disabled selected>Selecione um nivel</option>
-                                    <option *ngFor="let nivel of nivel" [value]="nivel.nivel">{{ nivel.nivel }}</option>
+                                    <option *ngFor="let nivel of nivel" [value]="nivel.nivel" [selected]="nivel.nivel === habilidade.nivel">{{ nivel.nivel }}</option>
                                   </select>
+                            </div>
+                            <div *ngIf="habilidade.nivel === ''" style="color: red">
+                                O campo Nível é obrigatório.
                             </div>
                         </div>
                     </div>
@@ -34,6 +40,6 @@
             </div>
         </div>
         <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarHabilidade()">Adicionar</button>
-        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarHabilidade()">Salvar</button>
+        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="salvarHabilidade()">Salvar</button>
     </form>
 </div>

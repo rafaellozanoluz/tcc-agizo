@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { HabilidadesService } from 'src/app/services/habilidades.service';
-import { Habilidades } from 'src/app/shared/models/habilidades.model';
 import { NivelService } from 'src/app/services/nivel.service';
 import { MODEL } from '../../../shared';
 
@@ -12,8 +11,7 @@ import { MODEL } from '../../../shared';
   styleUrls: ['./curriculo-habilidades.component.scss'],
 })
 export class CurriculoHabilidadesComponent implements OnInit {
-  public habilidadeForm: FormGroup;
-  mostrarBotoes: boolean = false;
+  mostrarBotoes: boolean = true;
   public nivel: any[] = [];
 
   constructor(
@@ -21,12 +19,7 @@ export class CurriculoHabilidadesComponent implements OnInit {
     private habilidadesService: HabilidadesService,
     private nivelService: NivelService,
     private authService: AuthService
-  ) {
-    this.habilidadeForm = this.formBuilder.group({
-      habilidade: ['', Validators.required],
-      nivel: ['', Validators.required],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.nivelService.obterNivel().subscribe(
@@ -37,40 +30,92 @@ export class CurriculoHabilidadesComponent implements OnInit {
         console.error('Erro ao obter nivel', error);
       }
     );
+    this.carregarHabilidadesUsuario();
   }
 
-  habilidades: any[] = [{ habilidade: '', nivel: '' }];
+  habilidades: MODEL.Habilidades[] = [];
 
   adicionarHabilidade() {
-    this.habilidades.push({ habilidade: '', nivel: '' });
+    this.habilidades.push({ descricao: '', nivel: '' });
     this.mostrarBotoes = false;
   }
 
-  cadastrarHabilidade() {
-    const { value, valid } = this.habilidadeForm;
+  salvarHabilidade() {
+    let i: number;
 
-    if (valid) {
+    if (this.habilidades.length === 0) {
+      i = 0;
+    } else {
+      i = this.habilidades.length - 1;
+    }
+    console.log('I:', i);
+    if (i >= 0 && i < this.habilidades.length && this.habilidades[i]) {
       const userId = this.authService.userId;
       const userIdString: string = userId.toString();
-      const habilidade = new Habilidades(null, value.habilidade, value.nivel, userIdString);
 
-      this.habilidadesService.criarHabilidades(habilidade).subscribe(
+      console.log('Indice:', i);
+      console.log('Habilidades:', this.habilidades[i]);
+
+      const novaExperiencia = {
+        id: null,
+        descricao: this.habilidades[i].descricao || '',
+        nivel: this.habilidades[i].nivel || '',
+        idusuario: userIdString,
+      };
+
+      this.habilidadesService.criarHabilidades(novaExperiencia).subscribe(
         (response) => {
-          console.log('Habilidade criado com sucesso', response);
+          console.log('Habilidades salva com sucesso', response);
           // Lógica para redirecionar ou mostrar mensagem de sucesso
           this.mostrarBotoes = true;
+          this.carregarHabilidadesUsuario();
         },
         (error) => {
-          console.error('Erro ao criar a habilidade', error);
+          console.error('Erro ao salvar habilidades', error);
           // Lógica para lidar com erros
         }
       );
     } else {
-      alert('Formulário inválido! Preencha todos os campos obrigatórios.');
+      console.error('Índice inválido ou habilidades indefinida');
     }
   }
 
   removerHabilidade(index: number) {
+    const experienciaRemovida = this.habilidades[index];
+
+    // Remover do banco de dados
+    this.habilidadesService.excluirHabilidades(experienciaRemovida.id).subscribe(
+      () => {
+        console.log('Habilidade removida do banco de dados com sucesso');
+      },
+      (error) => {
+        console.error('Erro ao remover habilidades do banco de dados', error);
+        // Aqui você pode tratar o erro adequadamente
+      }
+    );
     this.habilidades.splice(index, 1);
+  }
+
+  carregarHabilidadesUsuario() {
+    const userId = this.authService.userId;
+    const userIdString: string = userId.toString();
+
+    this.habilidadesService.obterHabilidadesPorUsuario(userIdString).subscribe(
+      (habilidades: MODEL.Habilidades[]) => {
+        console.log('Habilidades do usuário carregadas:', habilidades);
+
+        if (Array.isArray(habilidades) && habilidades.length > 0) {
+          // Cria uma cópia independente para edição
+          this.habilidades = habilidades.map((habilidades) => ({ ...habilidades }));
+        } else {
+          this.habilidades = [];
+        }
+        console.log('Habilidades para edição:', this.habilidades);
+      },
+      (error) => {
+        console.error('Erro ao buscar habilidades do usuário', error);
+        // Lógica para lidar com erros
+      }
+    );
   }
 }

@@ -12,8 +12,9 @@
           <form role="form" [formGroup]="clientForm" (submit)="onSubmit()">
             <div class="form-group">
               <select class="form-control" required formControlName="type" placeholder="Selecione o tipo de usuário">
-                <option value="recrutador">recrutador</option>
-                <option value="candidato">candidato</option>
+                <option value="" disabled selected>Selecione o tipo de perfil de usuário para o Agizo</option>
+                <option value="recrutador">Recrutador - Buscar currículos</option>
+                <option value="candidato">Candidato - Cadastrar currículos</option>
               </select>
 
               <div *ngIf="clientForm.controls['type'].invalid && (clientForm.controls['type'].dirty || clientForm.controls['type'].touched)">
@@ -105,18 +106,22 @@
                       <span class="input-group-text"><i class="ni ni-single-02"></i></span>
                     </div>
                     <input
-                    class="form-control"
-                    placeholder="CPF"
-                    type="number"
-                    formControlName="cpf"
-                    required
+                      class="form-control"
+                      placeholder="CPF"
+                      type="text"
+                      formControlName="cpf"
+                      required
+                      (input)="onCPFInputChange($event)"
                     />
                   </div>
                   <div *ngIf="clientForm.controls['cpf'].invalid && (clientForm.controls['cpf'].dirty || clientForm.controls['cpf'].touched)">
                     <div *ngIf="clientForm.controls['cpf'].errors.required">
-                      <p class="text-danger">CPF/CNPJ é obrigatório</p>
+                      <p class="text-danger">CPF é obrigatório</p>
                     </div>
-                  </div>
+                    <div *ngIf="clientForm.controls['cpf'].errors.invalidCPF">
+                      <p class="text-danger">CPF inválido</p>
+                    </div>
+                  </div>                  
                 </div>
               </div>
               <div class="col">
@@ -128,14 +133,18 @@
                     <input
                     class="form-control"
                     placeholder="Telefone/Celular"
-                    type="number"
+                    type="text"
                     formControlName="cellphone"
                     required
-                    />
+                    (input)="formatarTelefone()"
+                    /> 
                   </div>
                   <div *ngIf="clientForm.controls['cellphone'].invalid && (clientForm.controls['cellphone'].dirty || clientForm.controls['cellphone'].touched)">
                     <div *ngIf="clientForm.controls['cellphone'].errors.required">
                       <p class="text-danger">Telefone/Celular é obrigatório</p>
+                    </div>
+                    <div *ngIf="clientForm.controls['cellphone'].errors.invalidPhone">
+                      <p class="text-danger">Telefone/Celular inválido</p>
                     </div>
                   </div>
                 </div>
@@ -145,12 +154,11 @@
             <div class="row my-4">
               <div class="col-12">
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="customCheckRegister" type="checkbox"/>
+                  <input class="custom-control-input" id="customCheckRegister" type="checkbox" [(ngModel)]="termosAceitos" (change)="esconderMensagem()"/>
                   <label class="custom-control-label" for="customCheckRegister">
-                    <span class="text-muted"
-                      >Li e concordo com os <a href="#!">Termos de Privacidade</a></span
-                    >
+                    <span class="text-muted" (click)="abrirModal()" [ngClass]="{ 'text-blue': termosAceitos }">Li e concordo com os Termos de Privacidade</span>
                   </label>
+                  <p class="text-danger mt-2" *ngIf="!termosAceitos && mensagemVisivel">Por favor, aceite os termos de privacidade para prosseguir.</p>
                 </div>
               </div>
             </div>
@@ -164,3 +172,32 @@
     </div>
   </div>
 </div>
+
+<!-- Modal de Privacidade -->
+<div class="modal" [class.display-block]="mostrarModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Termos de Privacidade</h5>
+        <button type="button" class="close" (click)="mostrarModal = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bem-vindo aos nossos Termos de Privacidade!</p>
+        <p>Sua privacidade é importante para nós. É política da nossa empresa respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site.</p>
+        <p>Informamos ainda que:</p>
+        <ul>
+          <li>Nós não compartilhamos informações pessoais com terceiros, exceto quando exigido por lei.</li>
+          <li>Podemos utilizar cookies para oferecer uma melhor experiência de navegação.</li>
+          <li>Seu uso continuado do nosso site será considerado como aceitação dos nossos termos e condições.</li>
+        </ul>
+        <p>Estes Termos de Privacidade são válidos a partir de agora.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="mostrarModal = false">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+

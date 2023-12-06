@@ -1,9 +1,8 @@
 <div class="container">
-
     <h3 class="title-etapa">Informações sobre sua formação</h3>
-
-    <form role="form">
-        <div *ngFor="let formacao of formacoes; let i = index" class="formacao" [formGroup]="formacaoForm" role="form">
+    <p>Total de formações: {{ formacoes.length }}</p>
+    <form spellcheck="true">
+        <div *ngFor="let formacao of formacoes; let i = index" class="formacao" role="form">
             <div class="formacao-item">
 
                 <div class="form-group">
@@ -13,8 +12,10 @@
                         <label class="question">Formação</label>
                     </div>
                     <div class="resposta">
-                        <input class="form-control" type="text" placeholder="Nome do curso" formControlName="curso" [(ngModel)]="formacao.curso"
-                            name="curso">
+                        <input class="form-control" type="text" placeholder="Nome do curso" (input)="formacoes[i].curso = $event.target.value" [value]="formacao.curso" formControlName="curso_{{i}}" name="curso_{{i}}" required>
+                    </div>
+                    <div *ngIf="formacao.curso === ''" style="color: red">
+                        O campo Curso é obrigatório.
                     </div>
 
                     <div class="title-question">
@@ -23,7 +24,10 @@
                     </div>
                     <div class="resposta">
                         <input class="form-control" type="text" placeholder="Informe aonde você realizou o curso"
-                            [(ngModel)]="formacao.local" name="local" formControlName="local">
+                        (input)="formacoes[i].local = $event.target.value" [value]="formacao.local" formControlName="local_{{i}}" name="local_{{i}}" required>
+                    </div>
+                    <div *ngIf="formacao.local === ''" style="color: red">
+                        O campo Instituição é obrigatório.
                     </div>
 
                     <div class="row">
@@ -34,8 +38,11 @@
                             </div>
                             <div class="resposta">
                                 <input class="form-control" placeholder="Data Inicio" type="date"
-                                formControlName="datainicio" [(ngModel)]="formacao.dataInicio" name="dataInicio" />
+                                [value]="formacao.datainicio" (input)="formacoes[i].datainicio = $event.target.value" formControlName="datainicio_{{i}}" [max]="getCurrentDate()" required />
                             </div>
+                            <div *ngIf="formacao.datainicio === ''" style="color: red">
+                                O campo Data é obrigatório.
+                              </div>
                         </div>
 
                         <div class="col-4">
@@ -44,8 +51,11 @@
                                 <label class="question">Data de fim</label>
                             </div>
                             <div class="resposta">
-                                <input class="form-control" placeholder="Data Fim" type="date" formControlName="datafim"
-                                    [(ngModel)]="formacao.dataFim" name="dataFim" />
+                                <input class="form-control" placeholder="Data Fim" type="date"
+                                [value]="formacao.datafim" (input)="formacoes[i].datafim = $event.target.value" formControlName="datafim_{{i}}" required/>
+                            </div>
+                            <div *ngIf="formacao.datafim === ''" style="color: red">
+                                O campo Data é obrigatório.
                             </div>
                         </div>
                     </div>
@@ -54,6 +64,6 @@
             </div>
         </div>
         <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarFormacao()">Adicionar</button>
-        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarFormacao()">Salvar</button>
+        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="salvarFormacao()">Salvar</button>
     </form>
 </div>

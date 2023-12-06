@@ -1,46 +1,60 @@
 <div class="container">
+    
+    <br>
     <h3 class="title-etapa">Informações sobre o candidato</h3>
-    <form [formGroup]="cabecalhoForm" role="form">
+    
+    <form [formGroup]="cabecalhoForm" role="form" spellcheck="true">
       <div class="form-group">
         <div class="title-question">
-          <i class="fa fa-calendar"></i>
+          <i class="fa fa-user"></i>
           <label class="question">Digite o seu nome completo para o currículo</label>
         </div>
+        
         <div class="resposta">
-          <input class="form-control" type="text" id="nome" formControlName="name" />
+          <input class="form-control" type="text" id="nome" formControlName="name" [value]="cabecalhoExistente?.name || ''"/>
+        </div>
+  
+        <div class="title-question">  
+          <i class="fa fa-envelope"></i>
+          <label class="question">Digite o seu e-mail para contato</label> 
+        </div>
+
+        <div class="resposta">
+          <input class="form-control" type="text" id="email" formControlName="email" [value]="cabecalhoExistente?.email || ''"/>
+          <p id="mensagemErro" style="color: red; display: none;">E-mail inválido</p>
         </div>
   
         <div class="title-question">
-          <i class="fa fa-calendar"></i>
-          <label class="question">Digite o seu e-mail para contato</label>
-        </div>
-        <div class="resposta">
-          <input class="form-control" type="text" id="email" formControlName="email" />
-        </div>
-  
-        <div class="title-question">
-          <i class="fa fa-calendar"></i>
+          <i class="fa fa-phone"></i>
           <label class="question">Digite o seu telefone para contato</label>
         </div>
+        
         <div class="resposta">
-          <input class="form-control" type="text" id="telefone" formControlName="telefone" />
+          <input class="form-control" type="text" id="telefone" formControlName="telefone" [value]="cabecalhoExistente?.telefone || ''"/>
+          <p id="mensagemErroTelefone" style="color: red; display: none;">Formato de telefone inválido</p>
         </div>
-  
+
         <div class="title-question">
-          <i class="fa fa-calendar"></i>
-          <label class="question">Informe a cidade que reside</label>
-        </div>
-        <div class="resposta">
-          <input class="form-control" type="text" id="cidade" formControlName="cidade" />
-        </div>
-  
-        <div class="title-question">
-          <i class="fa fa-calendar"></i>
+          <i class="fa fa-map-marker"></i>
           <label class="question">Informe o estado em que reside</label>
         </div>
         <div class="resposta">
-          <input class="form-control" type="text" id="estado" formControlName="estado" />
+          <select class="form-control" [(ngModel)]="selectedEstado" (change)="capturarEstado($event.target.value)" formControlName="estado">
+            <option value="" disabled [selected]="!cabecalhoExistente?.estado">Selecione um estado</option>
+            <option *ngFor="let estado of estados" [value]="estado.id" [selected]="estado.sigla === cabecalhoExistente?.estado">{{ estado.nome }}</option>
+          </select>
         </div>
+
+        <div class="title-question">
+          <i class="fa fa-map-marker"></i>
+          <label class="question">Informe a cidade que reside</label>
+        </div>
+        <div class="resposta">
+          <select class="form-control" formControlName="cidade">
+            <option value="" [selected]="!cabecalhoExistente?.cidade">Selecione uma cidade</option>
+            <option *ngFor="let cidade of cidades" [value]="cidade.nome" [selected]="cidade.nome === cabecalhoExistente?.cidade">{{ cidade.nome }}</option>
+          </select>
+        </div>          
   
         <div class="title-question">
           <i class="fa fa-briefcase"></i>
@@ -53,7 +67,7 @@
           </select>
         </div>
         <br />
-        <button class="btn btn-primary" (click)="cadastrarCabecalho()">Salvar</button>
+        <button class="btn btn-primary" (click)="salvarCabecalho()">Salvar</button>
       </div>
     </form>
   </div>

@@ -1,1 +1,70 @@
-<p>inicial-administrador works!</p>
+<br><br><br><br><br>
+
+<div class="container mt-4">
+    <h3 class="title-etapa">Administradores do Sistema:</h3>  
+    <p>Total de administradores: {{ clients.length }}</p>
+    <div class="container mt-4">
+      <p class="text-danger" *ngIf="clients.length === 0">Nenhum administrador encontrado.</p>
+      <table *ngIf="clients.length > 0" class="table">
+        <!-- Cabeçalho da tabela -->
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Perfil</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <!-- Corpo da tabela -->
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <td>{{ client.id }}</td>
+            <td>{{ client.name }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.type }}</td>
+            <td><button class="btn btn-danger" (click)="excluirAdministrador(client.id)">Excluir</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Botão para adicionar -->
+    <button class="btn btn-primary mt-3" (click)="showModal = true">Adicionar</button>
+  </div>
+ 
+  <!-- Modal de adição -->
+<div class="modal" [ngClass]="{ 'd-block': showModal }" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar Administrador</h5>
+          <button type="button" class="close" (click)="showModal = false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar areas -->
+          <!-- Aqui você pode colocar os campos necessários para adicionar uma nova informação -->
+          <!-- Por exemplo: -->
+          <div class="form-group">
+            <label for="novaArea">Nome:</label>
+            <input type="text" class="form-control" id="novoNome" [(ngModel)]="novoNome">
+          </div>
+          <div class="form-group">
+            <label for="novaArea">E-mail:</label>
+            <input type="text" class="form-control" id="novoEmail" [(ngModel)]="novoEmail">
+          </div>
+          <div class="form-group">
+            <label for="novaArea">Senha:</label>
+            <input type="text" class="form-control" id="novoSenha" [(ngModel)]="novoSenha">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showModal = false">Fechar</button>
+          <button type="button" class="btn btn-primary" (click)="adicionarInformacao()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

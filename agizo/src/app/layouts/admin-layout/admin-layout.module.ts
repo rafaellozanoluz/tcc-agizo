@@ -13,6 +13,10 @@ import { InicialAdministradorComponent } from '../../pages/inicial-administrador
 import { VisualizarCurriculoComponent } from '../../pages/visualizar-curriculo/visualizar-curriculo.component';
 import { CurriculogeralComponent } from '../../pages/curriculogeral/curriculogeral.component';
 import { CadastrarCurriculoModule } from '../../pages/cadastrar-curriculo/cadastrar-curriculo.module';
+import { RelatorioComponent } from '../../pages/relatorio/relatorio.component';
+import { AdicionaisComponent } from '../../pages/adicionais/adicionais.component';
+import { NiveisComponent } from '../../pages/niveis/niveis.component';
+import { AreasComponent } from '../../pages/areas/areas.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -32,6 +36,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     InicialRecrutadorComponent,
     VisualizarCurriculoComponent,
     CurriculogeralComponent,
+    RelatorioComponent,
+    AdicionaisComponent,
+    NiveisComponent,
+    AreasComponent,
   ],
 })
 export class AdminLayoutModule {}

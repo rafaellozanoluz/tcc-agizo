@@ -10,18 +10,18 @@
         </select>
       </div>
       <div class="col-md-3">
-        <label for="cidade">Cidade:</label><br>
-        <select id="cidade" class="form-select custom-select" [(ngModel)]="selectedCidade">
-          <option value="" disabled selected>Selecione uma cidade</option>
-          <option *ngFor="let cidade of cidades" [value]="cidade">{{ cidade }}</option>
-        </select>
-      </div>
-      <div class="col-md-3">
         <label for="estado">Estado:</label><br>
         <select id="estado" class="form-select custom-select" [(ngModel)]="selectedEstado">
           <option value="" disabled selected>Selecione um estado</option>
           <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
         </select>               
+      </div>
+      <div class="col-md-3">
+        <label for="cidade">Cidade:</label><br>
+        <select id="cidade" class="form-select custom-select" [(ngModel)]="selectedCidade">
+          <option value="" disabled selected>Selecione uma cidade</option>
+          <option *ngFor="let cidade of cidades" [value]="cidade">{{ cidade }}</option>
+        </select>
       </div>
       <div class="col-md-2">
         <button class="btn btn-primary custom-btn" (click)="searchCandidates()">Filtrar</button>
@@ -42,6 +42,7 @@
           <th>Cidade</th>
           <th>Estado</th>
           <th>Ver Currículo</th>
+          <th>Contactar candidato</th>
         </tr>
       </thead>
       <tbody>
@@ -52,9 +53,172 @@
           <td>{{ candidate.cargo }}</td>
           <td>{{ candidate.cidade }}</td>
           <td>{{ candidate.estado }}</td>
-          <td><button class="btn btn-secondary" (click)="viewResume(candidate)">Ver Currículo</button></td>
+          <td><button class="btn btn-secondary" (click)="openModal(candidate.idusuario)">Ver Currículo</button></td>
+          <td>
+            <a [href]="'https://api.whatsapp.com/send?phone=55' + formatPhoneNumber(candidate.telefone)" target="_blank" rel="noopener noreferrer">
+              <button class="btn btn-success">
+                <i class="fab fa-whatsapp"></i> Contactar
+              </button>
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <div class="modal" [ngClass]="{ 'd-block': showModal }" tabindex="-1" role="dialog">
+    <div class="modal-dialog custom-modal" role="document">
+      <div class="modal-content">
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <button type="button" class="close" (click)="openModal1()">&times;</button>
+        </div>
   
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+          <div class="container">
+            <div class="pdfContainer" id="pdfContainer" value="Currículos AGIZO.pdf">
+                <div class="left_Side">
+                    <div class="profileText">
+                        <div class="imgBox">
+                            <img src="img.jpg">
+                        </div>
+                        <h2>{{ nome }}<br><span>{{ cargo }}</span></h2>
+                    </div>
+                    <div class="contato">
+                        <h3 class="title">Informações de Contato</h3>
+                        <ul>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="text">{{ telefone }}</span>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="text">{{ email }}</span>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="text">{{ cidade }}/{{ estado }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="habilidades">
+                        <h3 class="title">Habilidades</h3>
+                        <div *ngFor="let habilidade of habilidades">
+                            <div class="box">
+                                <h4>{{ habilidade.descricao }}</h4>
+                                <h5>{{ habilidade.nivel }}</h5>
+                            </div>  
+                        </div>                
+                    </div>
+    
+                    <div class="educacao">
+                        <br>
+                        <h3 class="title">Educação</h3>
+                        <ul *ngFor="let formacao of formacao">
+                            <li>
+                                <h4>{{ formacao.curso }}</h4>
+                                <h4>{{ formacao.local }}</h4>
+                                <h5>{{ formacao.datainicio }} até {{ formacao.datafim }}</h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right_Side">
+                    <div class="about">
+                        <h2 class="title2">Perfil</h2>
+                        <p>
+                            {{ resumo }}
+                        </p>
+                    </div>
+                    <div class="about">
+                        <h2 class="title2">Experiência</h2>
+                        <div class="box" *ngFor="let curriculo of experiencias">
+                            <div class="years_experience">
+                                <h5>{{ curriculo.datainicio }} até {{ curriculo.datafim }}</h5>
+                            </div>
+                            <div class="text">
+                                <h4>{{ curriculo.local }}</h4>
+                                <h4>{{ curriculo.cargo }}</h4>
+                                <p>
+                                    {{ curriculo.descricao }}
+                                </p>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="about">
+                        <h2 class="title2">Informações Adicionais</h2>
+                        <div class="box" *ngFor="let adicionais of adicionais">
+                            <div class="years_experience">
+                                <h5>{{ adicionais.data }}</h5>
+                            </div>
+                            <div class="text">
+                                <h4>{{ adicionais.titulo }}</h4>
+                                <p>
+                                    {{ adicionais.descricao }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div> 
+        </div>
+  
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <input type="button" style="background-color: rgb(0, 255, 170);" class="btn" value="Gerar PDF" (click)="convertToPDF()">
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  <div class="modal" [ngClass]="{ 'd-block': showModal1 }" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <!-- Cabeçalho do modal -->
+        <div class="modal-header">
+          <button type="button" class="close" (click)="closeModal()">&times;</button>
+        </div>
+  
+        <!-- Corpo do modal -->
+        <div class="modal-body">
+          <div>
+            <p>Contribua enviando uma avaliação do currículo para o candidato:</p>
+            <!-- Sistema de avaliação com estrelas -->
+            <div class="rating" (mouseleave)="resetStars()">
+              <span
+                class="star"
+                *ngFor="let star of stars; let i = index"
+                (mouseover)="highlightStars(i)"
+                (click)="rate(i + 1)"
+                [class.active]="star"
+              >
+                &#9733;
+              </span>
+            </div>
+          </div>
+          <div>
+            <!-- Área de texto para comentários -->
+            <label for="comment">Comentários:</label>
+            <textarea id="comment" [(ngModel)]="comment" name="comment" rows="4" cols="50"></textarea>
+          </div>
+
+          <div *ngIf="showErrorMessage" class="error-message">
+            Por favor, selecione pelo menos uma estrela e preencha o campo de comentário.
+          </div>
+
+          <div>
+            <!-- Botão de avaliar -->
+            <button class="btn btn-primary" (click)="submitRating()">Avaliar</button>
+          </div>
+        </div>
+  
+        <!-- Rodapé do modal -->
+        <div class="modal-footer">
+          <p class="italic underline" (click)="closeModal()" style="cursor: pointer;">Não gostaria de avaliar</p>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -13,6 +13,10 @@ export class CadastrarCurriculoComponent implements OnInit {
   // Variável para rastrear o estado do slide atual
   slideAtual = 1;
 
+  alterarSlide(numero: number) {
+    this.slideAtual = numero;
+  }
+
   // Função para avançar para o próximo slide
   slideProximo() {
     if (this.slideAtual < 6) {

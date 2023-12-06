@@ -31,8 +31,8 @@ export class HabilidadesService {
     return this.httpClient.get<string[]>(`${this.BASE_URL}/geral`);
   }
 
-  obterHabilidadesPorUsuario(idUsuario: string): Observable<MODEL.Habilidades> {
-    return this.httpClient.get<MODEL.Habilidades>(`${this.BASE_URL}/${idUsuario}`);
+  obterHabilidadesPorUsuario(idUsuario: string): Observable<MODEL.Habilidades[]> {
+    return this.httpClient.get<MODEL.Habilidades[]>(`${this.BASE_URL}/${idUsuario}`);
   }
 
   // Método para atualizar um registro de Habilidades

@@ -11,3 +11,5 @@ export { AreaAtuacao } from './areaatuacao.model';
 export { Nivel } from './nivel.model';
 export { AdicionaisGeral } from './adicionaisgeral.model';
 export { Candidato } from './candidato.model';
+export { Visualizacoes } from './visualizacoes.model';
+export { Avaliacoes } from './avaliacoes.model';

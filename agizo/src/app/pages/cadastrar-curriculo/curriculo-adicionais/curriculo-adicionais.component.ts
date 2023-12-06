@@ -12,61 +12,76 @@ import { MODEL } from '../../../shared';
   styleUrls: ['./curriculo-adicionais.component.scss'],
 })
 export class CurriculoAdicionaisComponent implements OnInit {
-  public adicionaisForm: FormGroup;
-  mostrarBotoes: boolean = false;
+  mostrarBotoes: boolean = true;
   public adicionaisgeral: any[] = [];
 
   constructor(
-    private formBuilder: FormBuilder,
     private adicionaisService: AdicionaisService,
     private adicionaisgeralService: AdicionaisGeralService,
     private authService: AuthService
-  ) {
-    this.adicionaisForm = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      descricao: ['', Validators.required],
-      data: ['', Validators.required],
-    });
-  }
+  ) {}
 
-  adicionais: any[] = [{ tipo: '', descricao: '', dataAquisicao: '' }];
+  adicionais: MODEL.Adicionais[] = [];
 
   adicionarAdicional() {
-    this.adicionais.push({ tipo: '', descricao: '', dataAquisicao: '' });
+    this.adicionais.push({ titulo: '', descricao: '', data: '' });
     this.mostrarBotoes = false;
   }
 
-  cadastrarAdicionais() {
-    const { value, valid } = this.adicionaisForm;
+  salvarAdicional() {
+    let i: number;
 
-    if (valid) {
+    if (this.adicionais.length === 0) {
+      i = 0;
+    } else {
+      i = this.adicionais.length - 1;
+    }
+    console.log('I:', i);
+    if (i >= 0 && i < this.adicionais.length && this.adicionais[i]) {
       const userId = this.authService.userId;
       const userIdString: string = userId.toString();
-      const adicionais = new Adicionais(
-        null,
-        value.titulo,
-        value.descricao,
-        value.data,
-        userIdString
-      );
 
-      this.adicionaisService.criarAdicionais(adicionais).subscribe(
+      console.log('Indice:', i);
+      console.log('adicionais:', this.adicionais[i]);
+
+      const novaAdicional = {
+        id: null,
+        titulo: this.adicionais[i].titulo || '',
+        descricao: this.adicionais[i].descricao || '',
+        data: this.adicionais[i].data || '',
+        idusuario: userIdString,
+      };
+
+      this.adicionaisService.criarAdicionais(novaAdicional).subscribe(
         (response) => {
-          console.log('Informações adicionais criado com sucesso', response);
+          console.log('adicionais salva com sucesso', response);
           // Lógica para redirecionar ou mostrar mensagem de sucesso
           this.mostrarBotoes = true;
+          this.carregarAdicionaisUsuario();
         },
         (error) => {
-          console.error('Erro ao criar informações adicionais', error);
+          console.error('Erro ao salvar adicionais', error);
           // Lógica para lidar com erros
         }
       );
     } else {
-      alert('Formulário inválido! Preencha todos os campos obrigatórios.');
+      console.error('Índice inválido ou adicionais indefinida');
     }
   }
 
   removerAdicional(index: number) {
+    const adicionaisRemovida = this.adicionais[index];
+
+    // Remover do banco de dados
+    this.adicionaisService.excluirAdicionais(adicionaisRemovida.id).subscribe(
+      () => {
+        console.log('adicionais removida do banco de dados com sucesso');
+      },
+      (error) => {
+        console.error('Erro ao remover adicionais do banco de dados', error);
+        // Aqui você pode tratar o erro adequadamente
+      }
+    );
     this.adicionais.splice(index, 1);
   }
 
@@ -79,5 +94,37 @@ export class CurriculoAdicionaisComponent implements OnInit {
         console.error('Erro ao obter as áreas de atuação', error);
       }
     );
+    this.carregarAdicionaisUsuario();
+  }
+
+  carregarAdicionaisUsuario() {
+    const userId = this.authService.userId;
+    const userIdString: string = userId.toString();
+
+    this.adicionaisService.obterAdicionaisPorUsuario(userIdString).subscribe(
+      (adicionais: MODEL.Adicionais[]) => {
+        console.log('adicionais do usuário carregadas:', adicionais);
+
+        if (Array.isArray(adicionais) && adicionais.length > 0) {
+          // Cria uma cópia independente para edição
+          this.adicionais = adicionais.map((adicionais) => ({ ...adicionais }));
+        } else {
+          this.adicionais = [];
+        }
+        console.log('adicionais para edição:', this.adicionais);
+      },
+      (error) => {
+        console.error('Erro ao buscar adicionais do usuário', error);
+        // Lógica para lidar com erros
+      }
+    );
+  }
+
+  getCurrentDate(): string {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 }

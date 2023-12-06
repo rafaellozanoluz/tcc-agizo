@@ -1,0 +1,58 @@
+<br><br><br><br><br>
+
+<div class="container mt-4">
+    <h3 class="title-etapa">Informações adicionais para cadastrar no currículo:</h3>  
+    <p>Total de informações adicionais: {{ adicionais.length }}</p>
+    <div class="container mt-4">
+      <p class="text-danger" *ngIf="adicionais.length === 0">Nenhum candidato encontrado.</p>
+      <table *ngIf="adicionais.length > 0" class="table">
+        <!-- Cabeçalho da tabela -->
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <!-- Corpo da tabela -->
+        <tbody>
+          <tr *ngFor="let adicionais of adicionais">
+            <td>{{ adicionais.id }}</td>
+            <td>{{ adicionais.descricao }}</td>
+            <td><button class="btn btn-danger" (click)="excluirAdicional(adicionais.id)">Excluir</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Botão para adicionar -->
+    <button class="btn btn-primary mt-3" (click)="showModal = true">Adicionar</button>
+  </div>
+ 
+  <!-- Modal de adição -->
+<div class="modal" [ngClass]="{ 'd-block': showModal }" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar Informação Adicional para o Currículo</h5>
+          <button type="button" class="close" (click)="showModal = false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar informações -->
+          <!-- Aqui você pode colocar os campos necessários para adicionar uma nova informação -->
+          <!-- Por exemplo: -->
+          <div class="form-group">
+            <label for="novaDescricao">Descrição:</label>
+            <input type="text" class="form-control" id="novaDescricao" [(ngModel)]="novaDescricao">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showModal = false">Fechar</button>
+          <button type="button" class="btn btn-primary" (click)="adicionarInformacao()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

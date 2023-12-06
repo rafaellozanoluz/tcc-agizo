@@ -17,7 +17,6 @@ export class ExperienciaService {
 
   constructor(private httpClient: HttpClient) {}
 
-  // Método para criar um novo registro de Experiencia
   criarExperiencia(experiencia: MODEL.Experiencia): Observable<MODEL.Experiencia> {
     return this.httpClient.post<MODEL.Experiencia>(`${this.BASE_URL}`, experiencia);
   }
@@ -35,8 +34,8 @@ export class ExperienciaService {
     );
   }
 
-  obterExperienciaPorUsuario(idUsuario: string): Observable<MODEL.Experiencia> {
-    return this.httpClient.get<MODEL.Experiencia>(`${this.BASE_URL}/${idUsuario}`);
+  obterExperienciaPorUsuario(idUsuario: string): Observable<MODEL.Experiencia[]> {
+    return this.httpClient.get<MODEL.Experiencia[]>(`${this.BASE_URL}/${idUsuario}`);
   }
 
   // Método para excluir um registro de Experiencia

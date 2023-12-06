@@ -1,9 +1,9 @@
 <div class="container">
 
     <h3 class="title-etapa">Informações adicionais</h3>  
-     
+    <p>Total de informações adicionais: {{ adicionais.length }}</p>
     <form role="form">
-        <div *ngFor="let adicional of adicionais; let i = index" class="adicional" [formGroup]="adicionaisForm" role="form">
+        <div *ngFor="let adicional of adicionais; let i = index" class="adicional" role="form">
         <div class="adicional-item">
         <div class="form-group">
             
@@ -12,10 +12,13 @@
                 <label class="question">Informações adicionais</label>
             </div>           
             <div class="resposta">
-                <select class="form-control" formControlName="titulo">
+                <select class="form-control" (input)="adicionais[i].titulo = $event.target.value" [value]="adicional.titulo" formControlName="descricao_{{i}}" name="descricao_{{i}}" required>
                     <option value="" disabled selected>Selecione uma área de atuação</option>
-                    <option *ngFor="let titulo of adicionaisgeral" [value]="titulo.descricao">{{ titulo.descricao }}</option>
+                    <option *ngFor="let titulo of adicionaisgeral" [value]="titulo.descricao" [selected]="titulo.descricao === adicional.titulo">{{ titulo.descricao }}</option>
                   </select>  
+            </div>
+            <div *ngIf="adicional.titulo === ''" style="color: red">
+                O campo Título é obrigatório.
             </div>
 
             <div class="title-question">
@@ -23,22 +26,28 @@
                 <label class="question">Descrição</label>
             </div>           
             <div class="resposta">
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Faça uma breve descrição" formControlName="descricao" [(ngModel)]="adicional.descricao" required></textarea>
+                <textarea class="form-control is-invalid" placeholder="Faça uma breve descrição" (input)="adicionais[i].descricao = $event.target.value" [value]="adicional.descricao" formControlName="descricao_{{i}}" name="descricao_{{i}}" required></textarea>
+            </div>
+            <div *ngIf="adicional.descricao === ''" style="color: red">
+                O campo Descrição é obrigatório.
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="title-question">
                         <i class="fa fa-calendar"></i>
-                        <label class="question" [(ngModel)]="adicional.dataAquisicao">Data</label>
+                        <label class="question">Data</label>
                     </div>           
                     <div class="resposta">
                         <input
                             class="form-control"
                             placeholder="Data aquisição"
                             type="date"
-                            formControlName="data"
+                            [value]="adicional.data" (input)="adicionais[i].data = $event.target.value" formControlName="data_{{i}}" [max]="getCurrentDate()" required
                         />
+                    </div>
+                    <div *ngIf="adicional.data === ''" style="color: red">
+                        O campo Data é obrigatório.
                     </div>
                 </div>
             </div>
@@ -48,6 +57,6 @@
             </div>
         </div>
         <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarAdicional()">Adicionar</button>
-        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarAdicionais()">Salvar</button>
+        <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="salvarAdicional()">Salvar</button>
     </form>
 </div>

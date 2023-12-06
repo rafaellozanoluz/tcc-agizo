@@ -1,0 +1,58 @@
+<br><br><br><br><br>
+
+<div class="container mt-4">
+    <h3 class="title-etapa">Níveis de habilidades para cadastrar no currículo:</h3>  
+    <p>Total de níveis: {{ niveis.length }}</p>
+    <div class="container mt-4">
+      <p class="text-danger" *ngIf="niveis.length === 0">Nenhum candidato encontrado.</p>
+      <table *ngIf="niveis.length > 0" class="table">
+        <!-- Cabeçalho da tabela -->
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nível</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <!-- Corpo da tabela -->
+        <tbody>
+          <tr *ngFor="let niveis of niveis">
+            <td>{{ niveis.id }}</td>
+            <td>{{ niveis.nivel }}</td>
+            <td><button class="btn btn-danger" (click)="excluirNivel(niveis.id)">Excluir</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Botão para adicionar -->
+    <button class="btn btn-primary mt-3" (click)="showModal = true">Adicionar</button>
+  </div>
+ 
+  <!-- Modal de adição -->
+<div class="modal" [ngClass]="{ 'd-block': showModal }" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar Nível de Habilidade para o Currículo</h5>
+          <button type="button" class="close" (click)="showModal = false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar niveis -->
+          <!-- Aqui você pode colocar os campos necessários para adicionar uma nova informação -->
+          <!-- Por exemplo: -->
+          <div class="form-group">
+            <label for="novoNivel">Nível:</label>
+            <input type="text" class="form-control" id="novoNivel" [(ngModel)]="novoNivel">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showModal = false">Fechar</button>
+          <button type="button" class="btn btn-primary" (click)="adicionarInformacao()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

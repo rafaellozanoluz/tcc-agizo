@@ -1,7 +1,8 @@
 <div class="container">
   <h3 class="title-etapa">Informações sobre sua experiência</h3>
-  <form>
-    <div *ngFor="let experiencia of experiencias; let i = index" class="experiencia" [formGroup]="experienciaForm" role="form">
+  <p>Total de experiências: {{ experiencias.length }}</p>
+  <form spellcheck="true">
+    <div *ngFor="let experiencia of experiencias; let i = index" class="experiencia" role="form">
       <div class="experiencia-item">
         <div class="form-group">
           <div class="title-question">
@@ -9,7 +10,10 @@
             <label class="question">Cargo</label>
           </div>
           <div class="resposta">
-            <input class="form-control" type="text" placeholder="Nome do cargo" formControlName="cargo" [(ngModel)]="experiencia.cargo" name="cargo">
+            <input class="form-control" type="text" placeholder="Nome do cargo"  (input)="experiencias[i].cargo = $event.target.value" [value]="experiencia.cargo" formControlName="cargo_{{i}}" name="cargo_{{i}}" required>
+          </div>
+          <div *ngIf="experiencia.cargo === ''" style="color: red">
+            O campo Cargo é obrigatório.
           </div>
         </div>
 
@@ -19,7 +23,10 @@
               <label class="question">Empresa</label>
           </div>           
           <div class="resposta">
-              <input class="form-control" type="text" placeholder="Empresa que trabalhou" formControlName="local" [(ngModel)]="experiencia.local" name="local">
+              <input class="form-control" type="text" placeholder="Empresa que trabalhou" (input)="experiencias[i].local = $event.target.value" [value]="experiencia.local" formControlName="local_{{i}}" name="local_{{i}}" required>
+          </div>
+          <div *ngIf="experiencia.local === ''" style="color: red">
+            O campo Empresa é obrigatório.
           </div>
         </div>
 
@@ -29,7 +36,10 @@
               <label class="question">Descrição da atividade</label>
           </div>           
           <div class="resposta">
-              <textarea class="form-control is-invalid" id="validationTextarea" formControlName="descricao" [(ngModel)]="experiencia.descricao" name="descricao" placeholder="Conte em poucas palavras o que fazia" required></textarea>
+              <textarea class="form-control is-invalid" id="validationTextarea" (input)="experiencias[i].descricao = $event.target.value" [value]="experiencia.descricao" formControlName="descricao_{{i}}" name="descricao_{{i}}" placeholder="Conte em poucas palavras o que fazia" required></textarea>
+          </div>
+          <div *ngIf="experiencia.descricao === ''" style="color: red">
+            O campo Descrição é obrigatório.
           </div>
         </div>
 
@@ -45,8 +55,11 @@
                           class="form-control"
                           placeholder="Data Inicio"
                           type="date"
-                          [(ngModel)]="experiencia.datainicio" name="datainicio" formControlName="datainicio"
+                          [value]="experiencia.datainicio" (input)="experiencias[i].datainicio = $event.target.value" formControlName="datainicio_{{i}}" [max]="getCurrentDate()" required
                       />
+                  </div>
+                  <div *ngIf="experiencia.datainicio === ''" style="color: red">
+                    O campo Data é obrigatório.
                   </div>
               </div>
 
@@ -60,8 +73,14 @@
                           class="form-control"
                           placeholder="Data Fim"
                           type="date"
-                          [(ngModel)]="experiencia.datafim" name="datafim" formControlName="datafim"
+                          [value]="experiencia.datafim" (input)="experiencias[i].datafim = $event.target.value; verificarDataFim(i)" formControlName="datafim_{{i}}" [max]="getCurrentDate()" required
                       />
+                  </div>
+                  <div *ngIf="experiencia.datafim === ''" style="color: red">
+                    O campo Data é obrigatório.
+                  </div>
+                  <div *ngIf="experiencia.datafimInvalid" style="color: red;">
+                    Data final deve ser posterior à data inicial
                   </div>
               </div>
             </div>
@@ -69,7 +88,7 @@
         <button type="button" class="btn btn-danger" (click)="removerExperiencia(i)">Remover</button>
       </div>
     </div>
-  <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarExperiencia()">Adicionar</button>
-  <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="cadastrarExperiencia()">Salvar</button>
+    <button type="button" *ngIf="mostrarBotoes" class="btn btn-success" (click)="adicionarExperiencia()">Adicionar</button>
+    <button type="button" *ngIf="!mostrarBotoes" class="btn btn-success" (click)="salvarExperiencia()">Salvar</button>
   </form>
 </div>

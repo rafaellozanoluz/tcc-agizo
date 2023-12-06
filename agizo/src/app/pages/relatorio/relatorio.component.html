@@ -1,0 +1,24 @@
+<br><br><br><br><br>
+<div class="container mt-4">
+  <p>Total de visualizações que o seu currículo teve: {{ quantidade }}</p>
+</div>
+<br><br><br>
+<div class="container mt-4">
+    <p *ngIf="noCandidatesFound" class="text-danger">Nenhuma avaliação encontrada.</p>
+    <table *ngIf="avaliacoes.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Recrutador</th>
+          <th>Avaliação</th>
+          <th>Comentários</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avaliacoes of avaliacoes">
+          <td>{{ recrutadorNomes[avaliacoes.idrecrutador] }}</td>
+          <td [innerHTML]="getStarRating(avaliacoes.avaliacao)" class="golden-star"></td>
+          <td>{{ avaliacoes.comentarios }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

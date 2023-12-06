@@ -27,8 +27,8 @@ export class AdicionaisService {
     return this.httpClient.get<MODEL.Adicionais[]>(`${this.BASE_URL}`);
   }
 
-  obterAdicionaisPorUsuario(idUsuario: string): Observable<MODEL.Adicionais> {
-    return this.httpClient.get<MODEL.Adicionais>(`${this.BASE_URL}/${idUsuario}`);
+  obterAdicionaisPorUsuario(idUsuario: string): Observable<MODEL.Adicionais[]> {
+    return this.httpClient.get<MODEL.Adicionais[]>(`${this.BASE_URL}/${idUsuario}`);
   }
 
   // Método para atualizar um registro de Adicionais

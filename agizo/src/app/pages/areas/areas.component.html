@@ -1,0 +1,58 @@
+<br><br><br><br><br>
+
+<div class="container mt-4">
+    <h3 class="title-etapa">Áreas de atuação profissional para cadastrar no currículo:</h3>  
+    <p>Total de níveis: {{ areas.length }}</p>
+    <div class="container mt-4">
+      <p class="text-danger" *ngIf="areas.length === 0">Nenhuma área encontrada.</p>
+      <table *ngIf="areas.length > 0" class="table">
+        <!-- Cabeçalho da tabela -->
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Excluir</th>
+          </tr>
+        </thead>
+        <!-- Corpo da tabela -->
+        <tbody>
+          <tr *ngFor="let areas of areas">
+            <td>{{ areas.id }}</td>
+            <td>{{ areas.descricao }}</td>
+            <td><button class="btn btn-danger" (click)="excluirArea(areas.id)">Excluir</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Botão para adicionar -->
+    <button class="btn btn-primary mt-3" (click)="showModal = true">Adicionar</button>
+  </div>
+ 
+  <!-- Modal de adição -->
+<div class="modal" [ngClass]="{ 'd-block': showModal }" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar Áreas de Atuação Profissional para o Currículo</h5>
+          <button type="button" class="close" (click)="showModal = false">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulário para adicionar areas -->
+          <!-- Aqui você pode colocar os campos necessários para adicionar uma nova informação -->
+          <!-- Por exemplo: -->
+          <div class="form-group">
+            <label for="novaArea">Nível:</label>
+            <input type="text" class="form-control" id="novaArea" [(ngModel)]="novaArea">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showModal = false">Fechar</button>
+          <button type="button" class="btn btn-primary" (click)="adicionarInformacao()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

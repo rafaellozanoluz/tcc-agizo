@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public message: string;
   showPassword: boolean = false;
+  saveCredentials: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -35,6 +36,11 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.message = params['error'];
     });
+    const savedCredentials = localStorage.getItem('credentials');
+    if (savedCredentials) {
+      this.saveCredentials = true;
+      // Aqui você pode fazer algo com as credenciais salvas, como preencher campos de login automaticamente
+    }
   }
 
   private Login(login: MODEL.Login) {
@@ -90,5 +96,15 @@ export class LoginComponent implements OnInit {
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
+  }
+
+  onCheckboxChange(): void {
+    if (this.saveCredentials) {
+      // Salva as credenciais no localStorage
+      localStorage.setItem('credentials', 'seu_usuario_e_senha_aqui');
+    } else {
+      // Remove as credenciais do localStorage se a opção for desmarcada
+      localStorage.removeItem('credentials');
+    }
   }
 }
